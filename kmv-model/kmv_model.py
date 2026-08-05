@@ -69,7 +69,8 @@ N_SIMULATIONS = 1_000_000  # Monte Carlo paths
 DEFAULT_CONFIDENCE_LEVEL = 0.999
 
 
-def run_kmv_simulation(portfolio, n_sims, confidence_level=DEFAULT_CONFIDENCE_LEVEL):
+def run_kmv_simulation(portfolio, n_sims, confidence_level=0.99):
+    
     """
     Run a Monte Carlo KMV/Merton simulation across the portfolio.
 
@@ -95,35 +96,52 @@ def run_kmv_simulation(portfolio, n_sims, confidence_level=DEFAULT_CONFIDENCE_LE
     p_cvar : float
         Portfolio CVaR / Expected Shortfall — mean loss in the tail
         beyond VaR.
+    expected_loss : float
+        The average loss you expect on an ordinary day. 
+        This is considered a predictable cost of doing business.
+    economic_capital : float
+        The extra cash cushion you must set aside to keep your organization 
+        solvent during an extreme crisis. It is calculated as
+        ec = cvar - el
+
     """
+
     n_firms = len(portfolio)
     market_shock = np.random.standard_normal(n_sims)
     firm_losses = np.zeros((n_firms, n_sims))
     default_matrix = np.zeros((n_firms, n_sims), dtype=bool)
 
     for i, firm in enumerate(portfolio):
-        # 1. Correlate each firm's asset return to the shared market factor.
+        # 1. สร้างความสัมพันธ์ผ่าน Market Factor
         z_firm = np.random.standard_normal(n_sims)
-        rho = np.sqrt(firm["asset_correlation"])
-        combined_z = (rho * market_shock) + (
-            np.sqrt(1 - firm["asset_correlation"]) * z_firm
-        )
+        rho = np.sqrt(firm['asset_correlation'])
+        combined_z = (rho * market_shock) + (np.sqrt(1 - firm['asset_correlation']) * z_firm)
 
-        # 2. Simulate terminal asset value under GBM (Merton/KMV).
-        drift = firm["mean"] - 0.5 * firm["standard_deviation"] ** 2
-        diffusion = firm["standard_deviation"] * combined_z
-        asset_at_maturity = firm["asset"] * np.exp(drift + diffusion)
+        # 2. คำนวณ Asset Value (KMV Model)
+        drift = (firm['mean'] - 0.5 * firm['standard_deviation']**2)
+        diffusion = firm['standard_deviation'] * combined_z
+        asset_at_maturity = firm['asset'] * np.exp(drift + diffusion)
 
-        # 3. Default trigger: asset value falls below debt at maturity.
-        default_matrix[i] = asset_at_maturity < firm["debt"]
-        firm_losses[i] = np.where(default_matrix[i], firm["debt"] * firm["lgd"], 0)
+        # 3. ระบุสถานะ Default และ Loss
+        default_matrix[i] = asset_at_maturity < firm['debt']
+        firm_losses[i] = np.where(default_matrix[i], firm['debt'] * firm['lgd'], 0)
 
     total_loss = np.sum(firm_losses, axis=0)
 
+    # คำนวณ Metrics
+    expected_loss = total_loss.mean()
     p_var = np.percentile(total_loss, confidence_level * 100)
     p_cvar = total_loss[total_loss >= p_var].mean()
+    economic_capital = p_var - expected_loss
 
-    return total_loss, default_matrix, p_var, p_cvar
+    return {
+        'total_loss': total_loss,
+        'default_matrix': default_matrix,
+        'expected_loss': expected_loss,
+        'p_var': p_var,
+        'p_cvar': p_cvar,
+        'economic_capital': economic_capital
+    }
 
 
 def get_scenario_summary(portfolio, default_matrix, losses):
@@ -156,12 +174,15 @@ def get_scenario_summary(portfolio, default_matrix, losses):
 
 
 if __name__ == "__main__":
-    losses, def_matrix, p_var, p_cvar = run_kmv_simulation(
-        PORTFOLIO, N_SIMULATIONS, DEFAULT_CONFIDENCE_LEVEL
-    )
+    results = run_kmv_simulation(PORTFOLIO, N_SIMULATIONS, DEFAULT_CONFIDENCE_LEVEL)
 
-    print(f"Portfolio Credit VaR ({DEFAULT_CONFIDENCE_LEVEL:.1%}): {p_var:,.2f}")
-    print(f"Portfolio CVaR (Expected Shortfall):     {p_cvar:,.2f}")
+    losses = results['total_loss']
+    def_matrix = results['default_matrix']
+
+    print(f"Expected Loss: {results['expected_loss']:,.2f}")
+    print(f"Portfolio Credit VaR ({DEFAULT_CONFIDENCE_LEVEL*100}%): {results['p_var']:,.2f}")
+    print(f"Economic Capital: {results['economic_capital']:,.2f}")
+    print(f"Portfolio CVaR (Expected Shortfall): {results['p_cvar']:,.2f}")
 
     scenario_table = get_scenario_summary(PORTFOLIO, def_matrix, losses)
     print("\nScenario summary (head):")
