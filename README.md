@@ -71,8 +71,6 @@ credit-risk-models/
 ├── notebooks/
 │   └── Credit_VaR_Models_Comparison.ipynb   # Runs and compares all three models
 ├── requirements.txt
-├── .gitignore
-├── .env.example
 └── README.md
 ```
 
