@@ -15,9 +15,7 @@ python kmv_model.py
 ```python
 from kmv_model import PORTFOLIO, run_kmv_simulation, get_scenario_summary
 
-losses, default_matrix, var, cvar = run_kmv_simulation(
-    PORTFOLIO, n_sims=1_000_000, confidence_level=0.99   # adjustable
-)
+results = run_kmv_simulation(PORTFOLIO, N_SIMULATIONS, DEFAULT_CONFIDENCE_LEVEL)
 scenario_table = get_scenario_summary(PORTFOLIO, default_matrix, losses)
 ```
 
