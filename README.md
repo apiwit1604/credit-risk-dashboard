@@ -100,20 +100,3 @@ print(result["Credit VaR"])
 
 
 ---
-
-## Model Caveats (read before treating outputs as final)
-
-- **CreditMetrics** (`creditmetrics-var/creditmetrics_model.py`): the example portfolio has a few
-  `payments_per_year` values that don't match their inline comments (flagged with `# TODO` in the
-  code) — verify these against your intended contract terms before trusting the cash-flow timing.
-  The model also reuses the 1-year transition matrix as an approximation for multi-year contracts
-  rather than compounding multi-year transition probabilities.
-- **KMV** (`kmv-model/kmv_model.py`): default confidence level was changed from an arbitrary
-  `0.783276` (in the original script) to `0.999`, to align with the BIS model's regulatory standard
-  and avoid an unexplained number. Adjust `DEFAULT_CONFIDENCE_LEVEL` as needed.
-- **BIS/Basel IRB** (`bis-irb-model/bis_irb_model.py`): `lgd` and `pd` must be passed as **decimal
-  fractions** (e.g. `0.40`, not `40`) — the function now raises a `ValueError` if you pass an
-  out-of-range value, since the original script accepted `LGD=40` silently and produced meaningless
-  output.
-- All three models use **hypothetical / illustrative rate, spread, and portfolio data** — not live
-  market data. Replace with real data sources before using outputs for any actual risk decision.
