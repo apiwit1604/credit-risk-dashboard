@@ -11,25 +11,7 @@ via a different methodology, packaged as standalone Python modules plus a compar
 
 A side-by-side comparison notebook lives in [`notebooks/Credit_VaR_Models_Comparison.ipynb`](./notebooks/Credit_VaR_Models_Comparison.ipynb).
 
----
-
-## 🇹🇭 ภาพรวมโปรเจกต์ (Thai)
-
-โปรเจกต์นี้รวบรวมโมเดลประเมินความเสี่ยงด้านเครดิต (Credit Risk) 3 แบบที่แยกกันทำงานอิสระ โดยแต่ละโมเดลใช้วิธีการคำนวณ Credit VaR ที่แตกต่างกัน:
-
-1. **CreditMetrics** — จำลองการเปลี่ยนแปลง Credit Rating ของแต่ละบริษัทด้วย Monte Carlo Simulation ผ่าน Single-Factor Gaussian Copula แล้ว Revalue กระแสเงินสดใหม่ตาม Rating ที่เปลี่ยนไป
-2. **KMV / Merton Model** — จำลองมูลค่าสินทรัพย์ของบริษัท (Asset Value) เทียบกับหนี้สิน (Debt) หากสินทรัพย์ต่ำกว่าหนี้สิน ณ วันครบกำหนด ถือว่า Default
-3. **BIS / Basel IRB Formula** — สูตรคำนวณเงินกองทุนตามเกณฑ์ธนาคารกลาง (Regulatory Capital) แบบ Closed-form ไม่ใช่ Simulation
-
-### ⚠️ ข้อควรระวังสำคัญ: การเปรียบเทียบ Alpha ระหว่างโมเดล
-
-- **CreditMetrics** และ **KMV** เป็น Monte Carlo ทั้งคู่ — สามารถปรับ `alpha` (Confidence Level) ให้เท่ากันเพื่อเปรียบเทียบกันได้โดยตรง
-- **BIS/Basel IRB** เป็นสูตรคณิตศาสตร์ตายตัวที่กำหนดโดยกฎเกณฑ์ธนาคารกลางไว้ที่ **99.9%** (`norm.ppf(0.999)` ถูกฝังอยู่ในสูตรโดยตรง) **ไม่สามารถปรับเปลี่ยนได้เหมือนอีกสองโมเดล** — หากปรับค่านี้ ผลลัพธ์ที่ได้จะไม่ใช่ตัวเลขเงินกองทุนตามเกณฑ์ Basel อีกต่อไป
-- ดังนั้นการ "ปรับ Alpha ให้เหมือนกันทั้ง 3 โมเดล" ทำได้เต็มที่เฉพาะระหว่าง CreditMetrics กับ KMV เท่านั้น ส่วน BIS จะถูกแสดงแยกไว้ที่ 99.9% เสมอ พร้อมป้ายกำกับชัดเจนในโค้ดและ Notebook
-
----
-
-## 🇬🇧 Project Overview (English)
+## 🇬🇧 Project Overview
 
 This repository packages three independent credit risk models, each estimating portfolio Credit VaR
 through a different methodology:
@@ -116,35 +98,6 @@ result = run_full_model(alpha=0.99)
 print(result["Credit VaR"])
 ```
 
----
-
-## Keeping API Keys / Secrets Out of GitHub
-
-None of the three models currently call an external API, but if you extend this project to pull
-live market data (rates, spreads, ratings), follow this convention from the start:
-
-1. **Never hardcode a key in a `.py` or `.ipynb` file.** Put it in a `.env` file instead:
-   ```
-   MARKET_DATA_API_KEY=abc123...
-   ```
-2. **`.env` is already in `.gitignore`** in this repo — Git will never stage it, so `git add .`
-   cannot accidentally include it.
-3. **Commit `.env.example` instead** (already included here) — a template with the variable
-   *names* but no real values, so collaborators know what to set up locally.
-4. **Load secrets at runtime** with `python-dotenv` (already in `requirements.txt`):
-   ```python
-   from dotenv import load_dotenv
-   import os
-   load_dotenv()
-   api_key = os.getenv("MARKET_DATA_API_KEY")
-   ```
-5. **If a key is ever committed by accident:** revoke/rotate it immediately at the provider — do
-   not rely on `git rm` alone. `git rm` removes the file going forward but the key is still
-   readable in the commit history (and in any fork/clone made before the removal) unless you
-   rewrite history with `git filter-repo` or the BFG Repo-Cleaner and force-push. Rotating the key
-   is faster and safer than trying to scrub history.
-6. **Before your first commit**, double check with `git status` that no `.env` or credential file
-   shows up as staged — if it does, `git reset` it before committing.
 
 ---
 
@@ -164,9 +117,3 @@ live market data (rates, spreads, ratings), follow this convention from the star
   output.
 - All three models use **hypothetical / illustrative rate, spread, and portfolio data** — not live
   market data. Replace with real data sources before using outputs for any actual risk decision.
-
----
-
-## License
-
-Add a license of your choice (e.g. MIT) before publishing publicly. Not included by default here.
