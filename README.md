@@ -11,7 +11,7 @@ via a different methodology, packaged as standalone Python modules plus a compar
 
 A side-by-side comparison notebook lives in [`notebooks/Credit_VaR_Models_Comparison.ipynb`](./notebooks/Credit_VaR_Models_Comparison.ipynb).
 
-## 🇬🇧 Project Overview
+## Project Overview
 
 This repository packages three independent credit risk models, each estimating portfolio Credit VaR
 through a different methodology:
@@ -23,7 +23,7 @@ through a different methodology:
 3. **BIS / Basel IRB Formula** — The Basel Committee's closed-form Internal Ratings-Based capital
    formula. Not a simulation — a direct analytical calculation per exposure.
 
-### ⚠️ Important: alpha is not comparable across all three models
+### Important: alpha is not comparable across all three models
 
 - **CreditMetrics** and **KMV** are both Monte Carlo models — their confidence level (`alpha`) is a
   free parameter (an empirical loss percentile), so these two **can** be set to the same value and
