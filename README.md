@@ -100,5 +100,4 @@ Every module also runs standalone for a quick smoke test:
 
 ## License
 
-Add a license of your choice (MIT is a common default for a portfolio
-project like this) before publishing.
+MIT — see [LICENSE](LICENSE).
