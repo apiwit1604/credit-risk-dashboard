@@ -1,102 +1,104 @@
-# Credit Risk Models — CreditMetrics, KMV, and BIS/Basel IRB
+# Credit Risk Toolkit
 
-Three independent portfolio credit risk models, each estimating **Credit Value-at-Risk (Credit VaR)**
-via a different methodology, packaged as standalone Python modules plus a comparison Jupyter notebook.
+A small, from-scratch toolkit of quantitative credit-risk models —
+reduced-form bond-implied PD, the Merton structural model, KMV portfolio
+Monte Carlo, a CreditMetrics-style ratings-migration Credit VaR engine,
+and the Basel IRB single-factor capital formula — plus an interactive
+Streamlit dashboard to explore each one.
 
-| Model | Approach | Folder |
-|---|---|---|
-| **CreditMetrics** | Monte Carlo — rating migration (single-factor Gaussian copula) | [`creditmetrics-var/`](./creditmetrics-var) |
-| **KMV / Merton** | Monte Carlo — structural default (asset value vs. debt) | [`kmv-model/`](./kmv-model) |
-| **BIS / Basel IRB** | Closed-form regulatory capital formula | [`bis-irb-model/`](./bis-irb-model) |
+## Why this exists
 
-A side-by-side comparison notebook lives in [`notebooks/Credit_VaR_Models_Comparison.ipynb`](./notebooks/Credit_VaR_Models_Comparison.ipynb).
+Six standalone research notebooks were consolidated into a single,
+importable, tested package with math documentation and an interactive
+front end, so the models can actually be reused (and reviewed) rather
+than re-copy-pasted per notebook.
 
-## Project Overview
+## ⚠️ Read this first
 
-This repository packages three independent credit risk models, each estimating portfolio Credit VaR
-through a different methodology:
+Two of the models in this repo use **different, incompatible
+conventions** for "asset correlation" (`rho` directly vs. `R = rho²`).
+This was **not** silently fixed — see
+**[docs/06_correlation_conventions.md](docs/06_correlation_conventions.md)**
+before comparing numbers across `kmv_montecarlo.py` /
+`basel_single_factor.py` and `credit_var_ratings.py`.
 
-1. **CreditMetrics** — Monte Carlo simulation of firm-level credit rating migrations via a
-   single-factor Gaussian copula, with cash flows revalued under each simulated rating outcome.
-2. **KMV / Merton Model** — Structural model simulating firm asset value against debt via
-   Geometric Brownian Motion; a firm defaults if simulated assets fall below debt at maturity.
-3. **BIS / Basel IRB Formula** — The Basel Committee's closed-form Internal Ratings-Based capital
-   formula. Not a simulation — a direct analytical calculation per exposure.
-
-### Important: alpha is not comparable across all three models
-
-- **CreditMetrics** and **KMV** are both Monte Carlo models — their confidence level (`alpha`) is a
-  free parameter (an empirical loss percentile), so these two **can** be set to the same value and
-  compared directly.
-- **BIS/Basel IRB is a closed-form regulatory formula fixed at 99.9%** confidence
-  (`norm.ppf(0.999)` is hardcoded into the Basel calibration) — it is **not** an adjustable
-  parameter. Changing it would no longer represent Basel-compliant regulatory capital.
-- So: "same alpha for all three" is achievable for CreditMetrics + KMV; BIS is reported alongside
-  at its fixed 99.9%, clearly labeled as such rather than silently forced to match.
-
-See [`notebooks/Credit_VaR_Models_Comparison.ipynb`](./notebooks/Credit_VaR_Models_Comparison.ipynb)
-for a working example of this comparison, including a single `ALPHA` variable that drives both
-Monte Carlo models consistently.
-
----
-
-## Repository Structure
+## Repository structure
 
 ```
-credit-risk-models/
-├── creditmetrics-var/
-│   └── creditmetrics_model.py     # Rating migration Monte Carlo Credit VaR
-├── kmv-model/
-│   └── kmv_model.py               # Structural (Merton/KMV) Monte Carlo Credit VaR
-├── bis-irb-model/
-│   └── bis_irb_model.py           # Basel IRB closed-form capital formula
-├── notebooks/
-│   └── Credit_VaR_Models_Comparison.ipynb   # Runs and compares all three models
+credit-risk-toolkit/
+├── credit_risk/                  # the package — pure logic, no UI
+│   ├── bond_pd.py                 # PD from credit-spread bootstrap
+│   ├── bond_calibration.py        # PD calibrated to a market bond price
+│   ├── merton.py                  # Merton (1974) structural PD
+│   ├── kmv_montecarlo.py          # KMV portfolio Monte Carlo (VaR/CVaR/EC)
+│   ├── credit_var_ratings.py      # CreditMetrics ratings-migration Credit VaR
+│   ├── basel_single_factor.py     # Basel IRB / ASRF regulatory capital
+│   └── sample_data.py             # shared demo inputs used by docs & dashboard
+├── docs/                          # math derivation + design notes, one per model
+│   ├── 01_bond_implied_pd.md
+│   ├── 02_merton_structural.md
+│   ├── 03_kmv_montecarlo.md
+│   ├── 04_credit_var_ratings.md
+│   ├── 05_basel_single_factor.md
+│   └── 06_correlation_conventions.md   # <- read this one
+├── app.py                         # Streamlit dashboard home page
+├── pages/                         # one Streamlit page per model
 ├── requirements.txt
 └── README.md
 ```
 
-Each model folder is self-contained: import its functions directly, or run the file standalone
-(`python creditmetrics_model.py`) for a quick demo with the module's default example portfolio.
+## Model → theory map
 
----
+| Page | Model | Core idea |
+|---|---|---|
+| Bond-Implied PD — Credit Spread | Reduced-form | PD from the ratio of a risky vs. riskless bond price |
+| Bond-Implied PD — Price Calibration | Reduced-form | PD calibrated so model price = observed market price |
+| Merton Structural Model | Structural | Equity as a call option on firm assets |
+| KMV Portfolio Monte Carlo | Structural, simulated | Merton model + correlated firms, simulated to a portfolio loss distribution |
+| Credit VaR — Ratings Migration | CreditMetrics | Simulates rating *migrations*, not just default, and revalues on the new curve |
+| Basel Single-Factor Capital | Regulatory (ASRF) | Closed-form portfolio capital under Basel's infinitely-granular-portfolio assumption |
 
-## Installation
+Full derivations are in `docs/`.
+
+## Getting started
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/<your-username>/credit-risk-models.git
-cd credit-risk-models
-
-# 2. Create and activate a virtual environment
-python3 -m venv venv
-source venv/bin/activate      # macOS / Linux
-venv\Scripts\activate         # Windows
-
-# 3. Install dependencies
+git clone <your-repo-url>
+cd credit-risk-toolkit
 pip install -r requirements.txt
+
+# run the dashboard
+streamlit run app.py
+
+# or use a model directly in Python / a notebook
+python -c "
+from credit_risk import merton, sample_data
+result = merton.calibrate_merton(**sample_data.MERTON_SAMPLE)
+print(result.pd_table())
+"
 ```
 
-## Running the Models
+Every module also runs standalone for a quick smoke test:
+`python -m credit_risk.kmv_montecarlo`, etc.
 
-**Standalone (quick demo, uses each file's built-in example portfolio):**
-```bash
-python creditmetrics-var/creditmetrics_model.py
-python kmv-model/kmv_model.py
-python bis-irb-model/bis_irb_model.py
-```
+## Known limitations (read before using for anything real)
 
-**Comparison notebook (recommended — runs all three together with a shared, adjustable `ALPHA`):**
-```bash
-jupyter notebook notebooks/Credit_VaR_Models_Comparison.ipynb
-```
+- **Correlation convention split** — see
+  [docs/06_correlation_conventions.md](docs/06_correlation_conventions.md).
+- **Term-structure PD calibration is under-identified** — fitting a PD
+  per period against one market price has many equally-good solutions;
+  see [docs/01_bond_implied_pd.md](docs/01_bond_implied_pd.md).
+- **Multi-year positions in the ratings-migration model** re-use the
+  1-year transition matrix as an approximation rather than the correct
+  $T^N$ matrix power; see
+  [docs/04_credit_var_ratings.md](docs/04_credit_var_ratings.md).
+- **All rate/spread curves in `sample_data.py` are hypothetical**
+  (per the original author), not live market data — swap in real quotes
+  before drawing real conclusions.
+- None of this is investment, credit, or regulatory advice — it's a
+  learning/portfolio project implementing textbook credit-risk models.
 
-**As a library, in your own script:**
-```python
-from creditmetrics_model import run_full_model
-result = run_full_model(alpha=0.99)
-print(result["Credit VaR"])
-```
+## License
 
-
----
+Add a license of your choice (MIT is a common default for a portfolio
+project like this) before publishing.
