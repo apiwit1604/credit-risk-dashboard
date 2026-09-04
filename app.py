@@ -2,11 +2,11 @@ import streamlit as st
 
 st.set_page_config(page_title="Credit Risk Toolkit", page_icon="📊", layout="wide")
 
-st.title("📊 Credit Risk Toolkit")
+st.title("Credit Risk Toolkit")
 st.caption("Reduced-form, structural, simulation-based, and regulatory credit-risk models — one page per model, math alongside the numbers.")
 
 st.warning(
-    "⚠️ **Before comparing numbers across pages:** the KMV and Basel pages use a different "
+    "**Before comparing numbers across pages:** the KMV and Basel pages use a different "
     "'asset correlation' convention (R = ρ²) than the Credit VaR — Ratings Migration page (ρ directly). "
     "See the note at the bottom of both pages, or `docs/06_correlation_conventions.md` in the repo.",
     icon="⚠️",
