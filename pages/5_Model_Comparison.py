@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Page 5 — Side-by-side comparison of the three Credit VaR models.
 
-Unlike Pages 2-4, this page's simulation settings (loss horizon, number of
+Unlike Pages (Merton KMV CVaR, CreditMetrics CVaR and Basel Single-Factor CVaR), this page's simulation settings (loss horizon, number of
 simulations, confidence level, random seed, flat Basel maturity) are their
 own, independent `compare_*` session-state keys — not read from Pages 2-4.
 That's deliberate: this page is meant to give one clean, self-contained
