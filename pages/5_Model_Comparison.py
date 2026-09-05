@@ -31,7 +31,7 @@ init_state()
 st.title("Credit VaR Model Comparison")
 st.caption(
     "Runs the same portfolio through Merton–KMV, CreditMetrics, and Basel Single-Factor, "
-    "using the settings below — set independently of Pages 2–4, so this page always reflects "
+    "using the settings below — set independently of Pages (Merton KMV CVaR, CreditMetrics CVaR and Basel Single-Factor CVaR), so this page always reflects "
     "exactly what's configured here."
 )
 
