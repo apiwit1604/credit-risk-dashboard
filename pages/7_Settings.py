@@ -32,7 +32,7 @@ init_state()
 st.title("Settings — Global Model Inputs")
 st.caption(
     "Confirming the rating scale below applies immediately. Everything else needs "
-    "**Apply settings** at the bottom. Both immediately affect Pages 2-6."
+    "**Apply settings** at the bottom. Both immediately affect Pages (Merton KMV CVaR, CreditMetrics CVaR,Basel Single-Factor CVaR, Model Comparison and Probability of Default)."
 )
 
 if st.button("Reset everything on this page to default (ThaiBMA)"):
