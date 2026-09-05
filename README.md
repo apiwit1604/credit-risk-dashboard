@@ -123,8 +123,7 @@ sensitive to the credit-spread curve.
 
 ### 3. Basel Single-Factor (ASRF, closed-form)
 
-The Basel II/III corporate IRB formula — no simulation, and fixed at a
-**99.9% confidence level by regulation**, not a user choice:
+The Basel II/III corporate IRB formula — no simulation.
 
 $$
 R(PD) = 0.12\cdot\frac{1-e^{-50PD}}{1-e^{-50}} + 0.24\cdot\left(1-\frac{1-e^{-50PD}}{1-e^{-50}}\right)
