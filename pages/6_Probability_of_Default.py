@@ -11,71 +11,11 @@ from src.default_probability.credit_spread_bootstrap import analyze_credit_risk
 from src.default_probability.jarrow_turnbull import run_jarrow_turnbull_many_pd, run_jarrow_turnbull_one_pd
 from src.default_probability.merton_structural import merton_model
 from src.state import init_state
+from src.ui import render_sidebar
 
 st.set_page_config(page_title="Probability of Default", layout="wide")
 init_state()
-
-# ==========================================
-# HIDE STREAMLIT DEFAULT NAVIGATION
-# ==========================================
-st.markdown(
-    """
-    <style>
-        /* ซ่อน Default Multi-page Navigation ด้านบน Sidebar */
-        [data-testid="stSidebarNav"] {
-            display: none !important;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
-# ==========================================
-# CUSTOM SIDEBAR DESIGN
-# ==========================================
-with st.sidebar:
-    st.markdown("## Risk Analytics")
-    st.caption("Portfolio Credit Risk Suite v1.0")
-    st.divider()
-
-    # หน้าหลัก
-    st.page_link("app.py", label="Overview & Introduction")
-    
-    st.divider()
-
-    # Section 1: Core Models
-    st.caption("MODELING FRAMEWORKS")
-    st.page_link("pages/2_Merton_KMV_CVaR.py", label="Merton–KMV CVaR")
-    st.page_link("pages/3_CreditMetrics_CVaR.py", label="CreditMetrics CVaR")
-    st.page_link("pages/4_Basel_Single_Factor_CVaR.py", label="Basel Single Factor Credit VaR")
-
-    st.divider()
-
-    # Section 2: Analytics & Calibration
-    st.caption("ANALYTICS & PARAMETERS")
-    st.page_link("pages/5_Model_Comparison.py", label="Model Comparison")
-    st.page_link("pages/6_Probability_of_Default.py", label="Probability of Default")
-
-    st.divider()
-
-    # Section 3: Configuration
-    st.caption("SYSTEM CONFIGURATION")
-    st.page_link("pages/7_Settings.py", label="Settings")
-
-    # Bottom Widget: Summary Panel
-    st.divider()
-    with st.container():
-        st.caption("PORTFOLIO STATE")
-        st.markdown("**Shared State:** Active")
-        st.caption("Changes in portfolio data or settings will sync dynamically across all pages.")
-
-    st.divider()
-    # ==========================================
-    # CREDITS & LICENSE
-    # ==========================================
-    st.caption("DEVELOPER & LICENSE")
-    st.markdown("**Developed by:** Apiwit Oonworg")
-    st.caption("© 2026 Apiwit Oonworg. All rights reserved.")
+render_sidebar()
 
 st.title("Probability of Default — Four Methods")
 st.caption(
