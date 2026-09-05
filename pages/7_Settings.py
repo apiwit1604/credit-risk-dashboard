@@ -1,9 +1,20 @@
 # -*- coding: utf-8 -*-
 """Page 7 — Settings: the market/model inputs that are hard to eyeball.
 
-Everything here is intentionally *not* firm-specific (that's the shared
-portfolio editor on Pages 2-5) — this page controls the rating scale, the
-transition matrix, and the two interest-rate curves that feed Pages 2-6.
+The Rating scale section is deliberately two-step:
+
+  1. Edit the rating list however you like (add/remove/rename/reorder),
+     then click **Confirm rating scale**. That immediately reshapes the
+     transition matrix (both row and column headers) and the
+     credit-spread curve (column headers) to match — carrying over data
+     for ratings that still exist, and filling in neutral defaults for
+     anything brand new. Everything else on this page is untouched.
+  2. Fine-tune the actual numbers (transition probabilities, spread bps,
+     risk-free curve) in the tables below, then click **Apply settings**
+     to commit those values.
+
+Splitting it this way means changing *which* ratings exist doesn't get
+tangled up with editing the *values* in an already-shaped table.
 """
 from __future__ import annotations
 
@@ -12,50 +23,81 @@ import pandas as pd
 import streamlit as st
 
 from src import config
+from src.rating_scale import DEFAULT_NEW_RATING_SPREAD_BPS, confirm_rating_scale
 from src.state import init_state, reset_settings_to_default
 
-st.set_page_config(page_title="Settings", layout="wide")
+st.set_page_config(page_title="Settings", page_icon="⚙️", layout="wide")
 init_state()
 
-st.title("Settings — Global Model Inputs")
+st.title("⚙️ Settings — Global Model Inputs")
 st.caption(
-    "Changes here apply the moment you click **Apply**, and immediately affect "
-    "Pages 2-6 (any page that reads the transition matrix or the rate curves)."
+    "Confirming the rating scale below applies immediately. Everything else needs "
+    "**Apply settings** at the bottom. Both immediately affect Pages 2-6."
 )
 
-if st.button("Reset everything on this page to default (ThaiBMA)"):
+if st.button("↩️ Reset everything on this page to default (ThaiBMA)"):
     reset_settings_to_default()
+    st.session_state["settings_version"] += 1
     st.rerun()
 
 st.divider()
 
 # ---------------------------------------------------------------------------
-# Rating scale
+# 1. Rating scale — edit freely, then Confirm to reshape the matrix/curve
 # ---------------------------------------------------------------------------
 st.subheader("1. Rating scale")
 st.caption(
-    "Renaming a label is safe. Changing *how many* ratings there are requires the "
-    "transition matrix below to be resized to match — do both together, then Apply."
+    "Add, remove, rename, or reorder ratings however you like — the last one must stay "
+    "the absorbing default state (\"D\"). Click **Confirm rating scale** to carry the "
+    "transition matrix and credit-spread curve over to this new scale."
 )
+
+version = st.session_state["settings_version"]
 rating_labels_df = pd.DataFrame({"Rating": st.session_state["rating_labels"]})
 edited_ratings = st.data_editor(
-    rating_labels_df, num_rows="dynamic", width="stretch", key="rating_labels_editor",
-    hide_index=True,
+    rating_labels_df, num_rows="dynamic", width="stretch",
+    key=f"rating_labels_editor_v{version}", hide_index=True,
 )
-new_rating_labels = [r for r in edited_ratings["Rating"].tolist() if isinstance(r, str) and r.strip()]
+draft_rating_labels = [r.strip() for r in edited_ratings["Rating"].tolist() if isinstance(r, str) and r.strip()]
+
+if st.button("✅ Confirm rating scale", type="primary"):
+    old_labels = list(st.session_state["rating_labels"])
+    errors = confirm_rating_scale(draft_rating_labels, st.session_state)
+
+    if errors:
+        for e in errors:
+            st.error(e)
+    else:
+        st.session_state["settings_version"] += 1
+        st.cache_data.clear()
+
+        new_labels = st.session_state["rating_labels"]
+        added = [r for r in new_labels if r not in old_labels]
+        removed = [r for r in old_labels if r not in new_labels]
+        msg = "Rating scale confirmed — matrix and credit-spread curve reshaped to match."
+        if added:
+            msg += f" New rating(s) **{', '.join(added)}** default to a neutral 100%-stays-put row " \
+                   f"and a flat {DEFAULT_NEW_RATING_SPREAD_BPS:.0f}bp placeholder spread — edit those below."
+        if removed:
+            msg += f" Removed: **{', '.join(removed)}**. Surviving rows may no longer sum to 1 — check the warning below."
+        st.success(msg)
+        st.rerun()
 
 st.divider()
 
 # ---------------------------------------------------------------------------
-# Transition matrix
+# 2. Transition matrix — values only; shape now follows the confirmed scale
 # ---------------------------------------------------------------------------
+version = st.session_state["settings_version"]  # re-read in case Confirm just bumped it
+current_labels = st.session_state["rating_labels"]
+non_default_labels = [r for r in current_labels if r != "D"]
+
 st.subheader("2. 1-year rating transition matrix")
 st.caption("Each row must sum to 1 (a probability distribution over ending ratings). Last row must be an absorbing default state.")
 
 current_matrix = st.session_state["transition_matrix"]
-current_labels = st.session_state["rating_labels"]
 matrix_df = pd.DataFrame(current_matrix, index=current_labels, columns=current_labels)
-edited_matrix_df = st.data_editor(matrix_df, width="stretch", key="transition_matrix_editor")
+edited_matrix_df = st.data_editor(matrix_df, width="stretch", key=f"transition_matrix_editor_v{version}")
 
 row_sums = edited_matrix_df.sum(axis=1)
 off_by = (row_sums - 1.0).abs()
@@ -68,12 +110,12 @@ if (off_by > 1e-6).any():
     normalize = st.checkbox("Auto-normalize every row to sum to 1 when I click Apply", value=True)
 else:
     normalize = False
-    st.success("All rows sum to 1.")
+    st.success("All rows sum to 1. ✅")
 
 st.divider()
 
 # ---------------------------------------------------------------------------
-# Risk-free curve & credit spread curve
+# 3. Risk-free curve & 4. credit-spread curve — values only
 # ---------------------------------------------------------------------------
 st.subheader("3. Risk-free curve")
 rf_df = pd.DataFrame(st.session_state["rf_data"], columns=["Tenor (yrs)", "Risk-free rate"])
@@ -81,36 +123,37 @@ edited_rf = st.data_editor(rf_df, num_rows="dynamic", width="stretch", key="rf_d
 
 st.subheader("4. Credit-spread curve (basis points over risk-free)")
 st.caption(
-    "Tenor grid must exactly match the risk-free curve above. Columns are every rating "
-    "except the default state — currently: " + ", ".join([r for r in new_rating_labels if r != "D"])
+    "Tenor grid must exactly match the risk-free curve above. Columns follow the "
+    "confirmed rating scale — currently: " + ", ".join(non_default_labels)
 )
-non_default = [r for r in current_labels if r != "D"]
-spread_cols = ["Tenor (yrs)"] + non_default
-spread_rows = []
-for row in st.session_state["credit_spread_data"]:
-    spread_rows.append(dict(zip(spread_cols, row)))
-spread_df = pd.DataFrame(spread_rows)
-edited_spread = st.data_editor(spread_df, num_rows="dynamic", width="stretch", key="credit_spread_editor", hide_index=True)
+spread_cols = ["Tenor (yrs)"] + non_default_labels
+spread_rows = [dict(zip(spread_cols, row)) for row in st.session_state["credit_spread_data"]]
+spread_df = pd.DataFrame(spread_rows, columns=spread_cols)
+edited_spread = st.data_editor(
+    spread_df, num_rows="dynamic", width="stretch",
+    key=f"credit_spread_editor_v{version}", hide_index=True,
+)
 
 st.divider()
 
-if st.button("Apply settings", type="primary"):
+if st.button("✅ Apply settings", type="primary"):
     errors = []
 
-    if len(new_rating_labels) < 2 or new_rating_labels[-1] != "D":
-        errors.append("The last rating label must be 'D' (the absorbing default state).")
-    if len(new_rating_labels) != edited_matrix_df.shape[0]:
+    if len(current_labels) != edited_matrix_df.shape[0]:
         errors.append(
-            f"Rating scale has {len(new_rating_labels)} entries but the transition matrix has "
-            f"{edited_matrix_df.shape[0]} rows — resize the matrix to match before applying."
+            "The transition matrix no longer matches the rating scale — click "
+            "**Confirm rating scale** above first, then re-check the values here."
         )
 
     rf_tenors = edited_rf["Tenor (yrs)"].tolist()
     spread_tenors = edited_spread["Tenor (yrs)"].tolist()
     if rf_tenors != spread_tenors:
         errors.append("The risk-free curve and credit-spread curve must use the same tenor grid (same years, same order).")
-    if len(non_default) != edited_spread.shape[1] - 1:
-        errors.append("The credit-spread table needs exactly one column per non-default rating.")
+    if len(non_default_labels) != edited_spread.shape[1] - 1:
+        errors.append(
+            "The credit-spread table's columns no longer match the rating scale — click "
+            "**Confirm rating scale** above first, then re-check the values here."
+        )
 
     if errors:
         for e in errors:
@@ -120,7 +163,6 @@ if st.button("Apply settings", type="primary"):
         if normalize:
             matrix_values = matrix_values / matrix_values.sum(axis=1, keepdims=True)
 
-        st.session_state["rating_labels"] = new_rating_labels
         st.session_state["transition_matrix"] = matrix_values
         st.session_state["rf_data"] = list(edited_rf.itertuples(index=False, name=None))
         st.session_state["credit_spread_data"] = [tuple(row) for row in edited_spread.itertuples(index=False, name=None)]
@@ -128,7 +170,7 @@ if st.button("Apply settings", type="primary"):
         st.cache_data.clear()
         st.success("Settings applied — Pages 2-6 will use these values now.")
 
-with st.expander("Restore ThaiBMA defaults for reference"):
+with st.expander("🔄 Restore ThaiBMA defaults for reference"):
     st.write("Rating labels:", config.DEFAULT_RATING_LABELS)
     st.dataframe(pd.DataFrame(config.DEFAULT_TRANSITION_MATRIX, index=config.DEFAULT_RATING_LABELS, columns=config.DEFAULT_RATING_LABELS).style.format("{:.4%}"))
     st.dataframe(pd.DataFrame(config.DEFAULT_RF_DATA, columns=["Tenor (yrs)", "Risk-free rate"]))
