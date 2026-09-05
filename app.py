@@ -62,12 +62,20 @@ with st.sidebar:
     st.caption("SYSTEM CONFIGURATION")
     st.page_link("pages/7_Settings.py", label="Settings", icon="⚙️")
 
-    # Bottom Widget: Summary Panel
+    # Bottom Widget: Summary Panel & Developer Credit
     st.divider()
     with st.container():
         st.caption("PORTFOLIO STATE")
         st.markdown("**Shared State:** Active ✅")
         st.caption("Changes in portfolio data or settings will sync dynamically across all pages.")
+
+    st.divider()
+    # ==========================================
+    # CREDITS & LICENSE
+    # ==========================================
+    st.caption("DEVELOPER & LICENSE")
+    st.markdown("👨‍💻 **Developed by:** Apiwit Oonworg")
+    st.caption("© 2026 Apiwit Oonworg. All rights reserved.")
 
 
 # ==========================================
