@@ -15,8 +15,13 @@ page so nothing is hardcoded.
 
 Click on any dashboard preview below to jump directly to its detailed model specification section:
 
-<img src="/images/01_introduction.png" width="400" alt="Introduction Page"/>](#quick-start)
-**[ภาพที่ 1: Introduction Page]**<br>Overview of dashboard features, architecture, and navigation guide across all modules.
+<p align="center">
+  <a href="https://credit-risk-models-by-apiwit1604.streamlit.app/">
+    <img src="./images/01_introduction.png" alt="Dashboard" width="700">
+  </a>
+  <br>
+  <sub>Click image to navigate to the dashboard.</sub>
+</p>
 
 ---
 
