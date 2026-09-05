@@ -9,7 +9,6 @@ from src.state import init_state
 # Config หน้าจอหลัก
 st.set_page_config(
     page_title="Credit Risk Dashboard — Introduction",
-    page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -34,39 +33,39 @@ st.markdown(
 # CUSTOM SIDEBAR DESIGN
 # ==========================================
 with st.sidebar:
-    st.markdown("## 🛡️ Risk Analytics")
+    st.markdown("## Risk Analytics")
     st.caption("Portfolio Credit Risk Suite v1.0")
     st.divider()
 
     # หน้าหลัก
-    st.page_link("app.py", label="Overview & Introduction", icon="🏠")
+    st.page_link("app.py", label="Overview & Introduction")
     
     st.divider()
 
     # Section 1: Core Models
     st.caption("MODELING FRAMEWORKS")
-    st.page_link("pages/2_Merton_KMV_CVaR.py", label="Merton–KMV CVaR", icon="📈")
-    st.page_link("pages/3_CreditMetrics_CVaR.py", label="CreditMetrics CVaR", icon="🎲")
-    st.page_link("pages/4_Basel_Single_Factor_CVaR.py", label="Basel Single Factor Credit VaR", icon="🏛️")
+    st.page_link("pages/2_Merton_KMV_CVaR.py", label="Merton–KMV CVaR")
+    st.page_link("pages/3_CreditMetrics_CVaR.py", label="CreditMetrics CVaR")
+    st.page_link("pages/4_Basel_Single_Factor_CVaR.py", label="Basel Single Factor Credit VaR")
 
     st.divider()
 
     # Section 2: Analytics & Calibration
     st.caption("ANALYTICS & PARAMETERS")
-    st.page_link("pages/5_Model_Comparison.py", label="Model Comparison", icon="⚖️")
-    st.page_link("pages/6_Probability_of_Default.py", label="Probability of Default", icon="🎯")
+    st.page_link("pages/5_Model_Comparison.py", label="Model Comparison")
+    st.page_link("pages/6_Probability_of_Default.py", label="Probability of Default")
 
     st.divider()
 
     # Section 3: Configuration
     st.caption("SYSTEM CONFIGURATION")
-    st.page_link("pages/7_Settings.py", label="Settings", icon="⚙️")
+    st.page_link("pages/7_Settings.py", label="Settings")
 
-    # Bottom Widget: Summary Panel & Developer Credit
+    # Bottom Widget: Summary Panel
     st.divider()
     with st.container():
         st.caption("PORTFOLIO STATE")
-        st.markdown("**Shared State:** Active ✅")
+        st.markdown("**Shared State:** Active")
         st.caption("Changes in portfolio data or settings will sync dynamically across all pages.")
 
     st.divider()
@@ -74,7 +73,7 @@ with st.sidebar:
     # CREDITS & LICENSE
     # ==========================================
     st.caption("DEVELOPER & LICENSE")
-    st.markdown("👨‍💻 **Developed by:** Apiwit Oonworg")
+    st.markdown("**Developed by:** Apiwit Oonworg")
     st.caption("© 2026 Apiwit Oonworg. All rights reserved.")
 
 
