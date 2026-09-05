@@ -7,7 +7,7 @@ import streamlit as st
 
 from src.compute import cached_credit_metrics, cached_spot_curves, cached_transition_matrix_n
 from src.state import init_state
-from src.ui_components import render_portfolio_editor
+from src.ui_components import render_model_portfolio_editor
 
 st.set_page_config(page_title="CreditMetrics Credit VaR", layout="wide")
 init_state()
@@ -47,7 +47,11 @@ same way as on the KMV page.
     )
 
 st.subheader("Portfolio")
-render_portfolio_editor(key="portfolio_editor_cm", caption="Shared across Pages 2–5 — edit here or on any other page.")
+render_model_portfolio_editor(
+    "creditmetrics", key="portfolio_editor_cm",
+    caption="Only the fields CreditMetrics reads: Firm, Rating, Asset Corr., Maturity (yrs), EAD, Coupon Rate, "
+            "Payments/Yr, LGD. Asset value/drift/vol are edited on the Merton–KMV or Model Comparison page.",
+)
 portfolio = st.session_state["portfolio"]
 
 st.subheader("Simulation settings")
