@@ -49,6 +49,7 @@ credit-risk-dashboard/
 ├── src/                                 # Framework-agnostic modeling library (no Streamlit imports)
 │   ├── config.py                        # Default market data & demo portfolio
 │   ├── curves.py                        # Transition-matrix power, spot curves, forward rates
+│   ├── rating_scale.py                  # Reshape the transition matrix / spread curve to a new rating scale
 │   ├── valuation.py                     # Forward-value revaluation (used by CreditMetrics)
 │   ├── credit_var/
 │   │   ├── merton_kmv.py                # Model 1 — structural Monte Carlo
@@ -60,7 +61,8 @@ credit-risk-dashboard/
 │   │   └── credit_spread_bootstrap.py   # PD method 4 — model-free bootstrap
 │   ├── state.py                         # Streamlit session-state defaults (dashboard-only)
 │   ├── compute.py                       # st.cache_data wrappers around the pure model functions
-│   └── ui_components.py                 # Shared portfolio editor widget
+│   ├── ui_components.py                 # Per-model portfolio editors (column-restricted) + full editor
+│   ├── ui.py                            # UI Architecture & Component Reusability                 
 ├── requirements.txt
 ├── LICENSE
 └── .gitignore
