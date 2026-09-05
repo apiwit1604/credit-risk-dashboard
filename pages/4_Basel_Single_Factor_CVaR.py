@@ -78,6 +78,7 @@ with c2:
     )
 
 with c3:
+    st.write("")
     st.session_state["basel_use_firm_maturity"] = st.toggle(
         "Use each firm's own maturity (recommended)",
         value=st.session_state["basel_use_firm_maturity"],
