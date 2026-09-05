@@ -29,13 +29,13 @@ from src.state import init_state, reset_settings_to_default
 st.set_page_config(page_title="Settings", page_icon="⚙️", layout="wide")
 init_state()
 
-st.title("⚙️ Settings — Global Model Inputs")
+st.title("Settings — Global Model Inputs")
 st.caption(
     "Confirming the rating scale below applies immediately. Everything else needs "
     "**Apply settings** at the bottom. Both immediately affect Pages 2-6."
 )
 
-if st.button("↩️ Reset everything on this page to default (ThaiBMA)"):
+if st.button("Reset everything on this page to default (ThaiBMA)"):
     reset_settings_to_default()
     st.session_state["settings_version"] += 1
     st.rerun()
@@ -60,7 +60,7 @@ edited_ratings = st.data_editor(
 )
 draft_rating_labels = [r.strip() for r in edited_ratings["Rating"].tolist() if isinstance(r, str) and r.strip()]
 
-if st.button("✅ Confirm rating scale", type="primary"):
+if st.button("Confirm rating scale", type="primary"):
     old_labels = list(st.session_state["rating_labels"])
     errors = confirm_rating_scale(draft_rating_labels, st.session_state)
 
@@ -110,7 +110,7 @@ if (off_by > 1e-6).any():
     normalize = st.checkbox("Auto-normalize every row to sum to 1 when I click Apply", value=True)
 else:
     normalize = False
-    st.success("All rows sum to 1. ✅")
+    st.success("All rows sum to 1.")
 
 st.divider()
 
@@ -136,7 +136,7 @@ edited_spread = st.data_editor(
 
 st.divider()
 
-if st.button("✅ Apply settings", type="primary"):
+if st.button("Apply settings", type="primary"):
     errors = []
 
     if len(current_labels) != edited_matrix_df.shape[0]:
@@ -170,7 +170,7 @@ if st.button("✅ Apply settings", type="primary"):
         st.cache_data.clear()
         st.success("Settings applied — Pages 2-6 will use these values now.")
 
-with st.expander("🔄 Restore ThaiBMA defaults for reference"):
+with st.expander("Restore ThaiBMA defaults for reference"):
     st.write("Rating labels:", config.DEFAULT_RATING_LABELS)
     st.dataframe(pd.DataFrame(config.DEFAULT_TRANSITION_MATRIX, index=config.DEFAULT_RATING_LABELS, columns=config.DEFAULT_RATING_LABELS).style.format("{:.4%}"))
     st.dataframe(pd.DataFrame(config.DEFAULT_RF_DATA, columns=["Tenor (yrs)", "Risk-free rate"]))
