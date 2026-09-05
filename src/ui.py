@@ -4,18 +4,6 @@ import streamlit as st
 def render_sidebar():
     """Render a clean, unified sidebar navigation across all Streamlit pages."""
     
-    # CSS สำหรับซ่อน Default Multi-page Navigation ของ Streamlit
-    st.markdown(
-        """
-        <style>
-            [data-testid="stSidebarNav"] {
-                display: none !important;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
     with st.sidebar:
         st.markdown("## Risk Analytics")
         st.caption("Portfolio Credit Risk Suite v1.0")
