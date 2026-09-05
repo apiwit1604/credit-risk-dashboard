@@ -12,7 +12,7 @@ from src.default_probability.jarrow_turnbull import run_jarrow_turnbull_many_pd,
 from src.default_probability.merton_structural import merton_model
 from src.state import init_state
 
-st.set_page_config(page_title="Probability of Default", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="Probability of Default", layout="wide")
 init_state()
 
 st.title("Probability of Default — Four Methods")
