@@ -50,8 +50,7 @@ with col2:
 with col3:
     st.markdown("#### Basel Single-Factor")
     st.markdown(
-        "Closed-form Basel II/III ASRF formula — the regulatory capital "
-        "calculation, fixed at a 99.9% confidence level by definition."
+        "Regulatory Capital Calculation via the Closed-Form Basel II/III ASRF Formula."
     )
 
 col4, col5 = st.columns(2)
@@ -72,6 +71,8 @@ st.markdown(
     "1-year transition matrix, the risk-free curve, and the credit-spread "
     "curve. Change them here and Pages 2–6 recompute against the new inputs."
 )
+
+st.divider()
 
 st.caption(
     "Built with Streamlit, NumPy, pandas, SciPy and Plotly. "
