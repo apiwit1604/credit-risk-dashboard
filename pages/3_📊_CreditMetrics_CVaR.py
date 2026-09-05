@@ -9,10 +9,10 @@ from src.compute import cached_credit_metrics, cached_spot_curves, cached_transi
 from src.state import init_state
 from src.ui_components import render_portfolio_editor
 
-st.set_page_config(page_title="CreditMetrics Credit VaR", page_icon="📊", layout="wide")
+st.set_page_config(page_title="CreditMetrics Credit VaR", layout="wide")
 init_state()
 
-st.title("📊 CreditMetrics Rating-Migration Credit VaR")
+st.title("CreditMetrics Rating-Migration Credit VaR")
 
 with st.expander("📖 Methodology", expanded=False):
     st.markdown(
