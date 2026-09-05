@@ -33,6 +33,14 @@ def init_state() -> None:
         "basel_maturity_override": 2.5,
         "kmv_seed": 42,
         "creditmetrics_seed": 42,
+        # Model Comparison page (5) settings are intentionally independent of
+        # Pages 2-4's own settings above — see the module docstring in
+        # pages/5_🧮_Model_Comparison.py for why.
+        "compare_loss_horizon": config.DEFAULT_LOSS_HORIZON,
+        "compare_n_sims": config.DEFAULT_N_SIM,
+        "compare_confidence": config.DEFAULT_CONFIDENCE_KMV,
+        "compare_seed": 42,
+        "compare_maturity": 2.5,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
