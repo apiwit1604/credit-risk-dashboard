@@ -12,10 +12,10 @@ from src.default_probability.jarrow_turnbull import run_jarrow_turnbull_many_pd,
 from src.default_probability.merton_structural import merton_model
 from src.state import init_state
 
-st.set_page_config(page_title="Probability of Default", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="Probability of Default", layout="wide")
 init_state()
 
-st.title("🎯 Probability of Default — Four Methods")
+st.title("Probability of Default — Four Methods")
 st.caption(
     "Unlike Pages 2–5, these methods work off a single firm/bond at a time, not the shared portfolio — "
     "they're independent PD-estimation techniques, not part of the Credit VaR pipeline."
@@ -30,7 +30,7 @@ tab_merton, tab_jt1, tab_jtn, tab_spread = st.tabs([
 # Tab 1 — Merton structural model
 # ---------------------------------------------------------------------------
 with tab_merton:
-    with st.expander("📖 Methodology", expanded=False):
+    with st.expander("Methodology", expanded=False):
         st.markdown(
             r"""
 Equity is treated as a European call option on the firm's assets. Given
@@ -87,7 +87,7 @@ def _rf_curve_editor(key_prefix: str) -> list[tuple[float, float]]:
 
 
 with tab_jt1:
-    with st.expander("📖 Methodology", expanded=False):
+    with st.expander("Methodology", expanded=False):
         st.markdown(
             r"""
 Default is modeled as a constant risk-neutral hazard rate $PD$ per period.
@@ -172,7 +172,7 @@ market price using the same survival-weighted discounting.
 # Tab 4 — Credit spread bootstrap
 # ---------------------------------------------------------------------------
 with tab_spread:
-    with st.expander("📖 Methodology", expanded=False):
+    with st.expander("Methodology", expanded=False):
         st.markdown(
             r"""
 A model-free bootstrap: compare each period's risky zero-coupon bond price
