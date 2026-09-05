@@ -6,68 +6,58 @@ import streamlit as st
 
 from src.state import init_state
 
-# -----------------------------------------------------------------------------
-# PAGE CONFIGURATION
-# -----------------------------------------------------------------------------
+# Config หน้าจอหลัก
 st.set_page_config(
     page_title="Credit Risk Dashboard — Introduction",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
-# Initialize global session state
 init_state()
 
-# -----------------------------------------------------------------------------
-# SIDEBAR DESIGN
-# -----------------------------------------------------------------------------
+# ==========================================
+# CUSTOM SIDEBAR DESIGN
+# ==========================================
 with st.sidebar:
-    # 1. Branding Header
-    st.markdown("## 🛡️ Risk Metrics")
-    st.caption("Credit VaR & Analytics Suite | v1.0")
+    st.markdown("## 🛡️ Risk Analytics")
+    st.caption("Portfolio Credit Risk Suite v1.0")
     st.divider()
 
-    # 2. Main Navigation Group
-    st.caption("📂 OVERVIEW")
-    st.page_link("app.py", label="Introduction", icon="🏠")
-
-    st.caption("📊 MODELING FRAMEWORKS")
-    st.page_link("pages/1_merton_kmv.py", label="Merton–KMV CVaR", icon="📈")
-    st.page_link("pages/2_creditmetrics.py", label="CreditMetrics CVaR", icon="🎲")
-    st.page_link("pages/3_basel.py", label="Basel Single-Factor", icon="🏛️")
-
-    st.caption("🔍 ANALYTICS & CALIBRATION")
-    st.page_link("pages/4_comparison.py", label="Model Comparison", icon="⚖️")
-    st.page_link("pages/5_pd.py", label="Probability of Default", icon="🎯")
-
-    st.caption("⚙️ CONFIGURATION")
-    st.page_link("pages/6_settings.py", label="Market Settings", icon="⚙️")
-
-    st.divider()
-
-    # 3. Active Portfolio Quick Status Card
-    st.markdown("#### 💼 Portfolio Status")
+    # หน้าหลัก
+    st.page_link("app.py", label="Overview & Introduction", icon="🏠")
     
-    # อ่านค่าจริงจาก st.session_state หากมีข้อมูล
-    portfolio = st.session_state.get("portfolio", None)
-    if portfolio is not None and hasattr(portfolio, "__len__"):
-        n_obligors = len(portfolio)
-        total_ead = getattr(portfolio, "total_ead", None) or portfolio["ead"].sum() if "ead" in portfolio else 0
-        ead_display = f"${total_ead:,.0f}" if isinstance(total_ead, (int, float)) else "N/A"
-    else:
-        n_obligors = "Loaded"
-        ead_display = "Active"
+    st.divider()
 
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.metric(label="Obligors", value=n_obligors)
-    with col_b:
-        st.metric(label="Total EAD", value=ead_display)
+    # Section 1: Core Models
+    st.caption("MODELING FRAMEWORKS")
+    st.page_link("pages/2_Merton_KMV_CVaR.py", label="Merton–KMV CVaR", icon="📈")
+    st.page_link("pages/3_CreditMetrics_CVaR.py", label="CreditMetrics CVaR", icon="🎲")
+    st.page_link("pages/4_Basel_Single_Factor_CVaR.py", label="Basel Single Factor Credit VaR", icon="🏛️")
 
-# -----------------------------------------------------------------------------
-# MAIN CONTENT
-# -----------------------------------------------------------------------------
+    st.divider()
+
+    # Section 2: Analytics & Calibration
+    st.caption("ANALYTICS & PARAMETERS")
+    st.page_link("pages/5_Model_Comparison.py", label="Model Comparison", icon="⚖️")
+    st.page_link("pages/6_Probability_of_Default.py", label="Probability of Default", icon="🎯")
+
+    st.divider()
+
+    # Section 3: Configuration
+    st.caption("SYSTEM CONFIGURATION")
+    st.page_link("pages/7_Settings.py", label="Settings", icon="⚙️")
+
+    # Bottom Widget: Summary Panel
+    st.divider()
+    with st.container():
+        st.caption("PORTFOLIO STATE")
+        st.markdown("**Shared State:** Active ✅")
+        st.caption("Changes in portfolio data or settings will sync dynamically across all pages.")
+
+
+# ==========================================
+# MAIN PAGE CONTENT
+# ==========================================
 st.title("Portfolio Credit Risk Dashboard")
 st.caption("Credit Value-at-Risk & Probability of Default, across three independent modeling frameworks")
 
