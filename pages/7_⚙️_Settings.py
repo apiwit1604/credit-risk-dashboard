@@ -17,13 +17,13 @@ from src.state import init_state, reset_settings_to_default
 st.set_page_config(page_title="Settings", page_icon="⚙️", layout="wide")
 init_state()
 
-st.title("⚙️ Settings — Global Model Inputs")
+st.title("Settings — Global Model Inputs")
 st.caption(
     "Changes here apply the moment you click **Apply**, and immediately affect "
     "Pages 2-6 (any page that reads the transition matrix or the rate curves)."
 )
 
-if st.button("↩️ Reset everything on this page to default (ThaiBMA)"):
+if st.button("Reset everything on this page to default (ThaiBMA)"):
     reset_settings_to_default()
     st.rerun()
 
@@ -68,7 +68,7 @@ if (off_by > 1e-6).any():
     normalize = st.checkbox("Auto-normalize every row to sum to 1 when I click Apply", value=True)
 else:
     normalize = False
-    st.success("All rows sum to 1. ✅")
+    st.success("All rows sum to 1.")
 
 st.divider()
 
@@ -94,7 +94,7 @@ edited_spread = st.data_editor(spread_df, num_rows="dynamic", width="stretch", k
 
 st.divider()
 
-if st.button("✅ Apply settings", type="primary"):
+if st.button("Apply settings", type="primary"):
     errors = []
 
     if len(new_rating_labels) < 2 or new_rating_labels[-1] != "D":
@@ -128,7 +128,7 @@ if st.button("✅ Apply settings", type="primary"):
         st.cache_data.clear()
         st.success("Settings applied — Pages 2-6 will use these values now.")
 
-with st.expander("🔄 Restore ThaiBMA defaults for reference"):
+with st.expander("Restore ThaiBMA defaults for reference"):
     st.write("Rating labels:", config.DEFAULT_RATING_LABELS)
     st.dataframe(pd.DataFrame(config.DEFAULT_TRANSITION_MATRIX, index=config.DEFAULT_RATING_LABELS, columns=config.DEFAULT_RATING_LABELS).style.format("{:.4%}"))
     st.dataframe(pd.DataFrame(config.DEFAULT_RF_DATA, columns=["Tenor (yrs)", "Risk-free rate"]))
