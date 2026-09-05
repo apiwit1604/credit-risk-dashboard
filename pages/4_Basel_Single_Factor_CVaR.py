@@ -62,7 +62,7 @@ render_model_portfolio_editor(
 portfolio = st.session_state["portfolio"]
 
 st.subheader("Model settings")
-c1, c2, c3, c4 = st.columns(4)
+c1, c2 = st.columns(2)
 with c1:
     st.session_state["loss_horizon"] = st.number_input(
         "Loss horizon for the transition matrix (years)", min_value=0.08, max_value=5.0,
@@ -77,8 +77,10 @@ with c2:
         value=st.session_state["confidence_creditmetrics"],
     )
 
+st.write("---")
+c3, c4 = st.columns(2)
+
 with c3:
-    st.write("")
     st.session_state["basel_use_firm_maturity"] = st.toggle(
         "Use each firm's own maturity (recommended)",
         value=st.session_state["basel_use_firm_maturity"],
