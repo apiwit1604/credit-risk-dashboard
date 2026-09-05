@@ -17,7 +17,7 @@ Click on any dashboard preview below to jump directly to its detailed model spec
 
 | Page View | Module Description & Quick Access Link |
 | :--- | :--- |
-| [<img src="docs/images/01_introduction.png" width="400" alt="Introduction Page"/>](#quick-start) | **[ภาพที่ 1: Introduction Page]**<br>Overview of dashboard features, architecture, and navigation guide across all modules. |
+| [<img src="/images/01_introduction.png" width="400" alt="Introduction Page"/>](#quick-start) | **[ภาพที่ 1: Introduction Page]**<br>Overview of dashboard features, architecture, and navigation guide across all modules. |
 | [<img src="docs/images/02_merton_kmv.png" width="400" alt="Merton-KMV Dashboard"/>](#1-mertonkmv-structural-asset-value-monte-carlo) | **[ภาพที่ 2: Merton–KMV Structural Credit VaR]**<br>Simulates asset-value paths via a 1-factor Gaussian copula to evaluate portfolio default distribution. |
 | [<img src="docs/images/03_creditmetrics.png" width="400" alt="CreditMetrics Dashboard"/>](#2-creditmetrics-rating-migration-monte-carlo) | **[ภาพที่ 3: CreditMetrics Rating-Migration Credit VaR]**<br>Simulates credit rating migrations and revalues exposures along yield & credit spread curves. |
 | [<img src="docs/images/04_basel_asrf.png" width="400" alt="Basel ASRF Dashboard"/>](#3-basel-single-factor-asrf-closed-form) | **[ภาพที่ 4: Basel Single-Factor (ASRF) Credit VaR]**<br>Closed-form regulatory capital calculation under Basel II/III framework. |
