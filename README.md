@@ -62,7 +62,7 @@ credit-risk-dashboard/
 │   ├── state.py                         # Streamlit session-state defaults (dashboard-only)
 │   ├── compute.py                       # st.cache_data wrappers around the pure model functions
 │   ├── ui_components.py                 # Per-model portfolio editors (column-restricted) + full editor
-│   ├── ui.py                            # UI Architecture & Component Reusability                 
+│   └── ui.py                            # UI Architecture & Component Reusability                 
 ├── requirements.txt
 ├── LICENSE
 └── .gitignore
