@@ -69,7 +69,7 @@ st.markdown("#### Settings")
 st.markdown(
     "The market/model inputs that are hard to eyeball — the rating scale, the "
     "1-year transition matrix, the risk-free curve, and the credit-spread "
-    "curve. Change them here and Pages 2–6 recompute against the new inputs."
+    "curve. Change them here and Pages (Merton KMV CVaR, CreditMetrics CVaR,Basel Single-Factor CVaR, Model Comparison and Probability of Default) recompute against the new inputs."
 )
 
 st.divider()
