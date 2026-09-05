@@ -11,17 +11,24 @@ and the Basel regulatory formula — side by side, with the "hard to
 calibrate" market inputs (transition matrix, curves) exposed on a settings
 page so nothing is hardcoded.
 
-## Visual Overview
+---
 
-Click on any dashboard preview below to jump directly to its detailed model specification section:
+## Visual Overview & Navigation
 
-<p align="center">
-  <a href="https://credit-risk-models-by-apiwit1604.streamlit.app/">
-    <img src="./images/01_introduction.png" alt="Dashboard" width="700">
-  </a>
-  <br>
-  <sub>Click image to navigate to the dashboard.</sub>
-</p>
+Click any dashboard preview image below to jump directly to its detailed technical specification section. *(All pages share a unified live portfolio state.)*
+
+| Dashboard Interface | Module Description & Quick Access Link |
+| :--- | :--- |
+| [<img src="/images/01_introduction.png" width="450" alt="Introduction Page"/>](#image-1-introduction-page) | **[Image 1: Introduction Page]**<br>System overview detailing dashboard navigation, framework connections, and project architecture. |
+| [<img src="/images/02_merton_kmv.png" width="450" alt="Merton-KMV Dashboard"/>](#1-mertonkmv-structural-asset-value-monte-carlo) | **[Image 2: Merton–KMV Structural Credit VaR]**<br>Simulates asset value paths via a 1-factor Gaussian copula to evaluate portfolio default distributions. |
+| [<img src="/images/03_creditmetrics.png" width="450" alt="CreditMetrics Dashboard"/>](#2-creditmetrics-rating-migration-monte-carlo) | **[Image 3: CreditMetrics Rating-Migration Credit VaR]**<br>Simulates credit rating migrations and revalues exposures along yield and credit spread curves. |
+| [<img src="/images/04_basel_asrf.png" width="450" alt="Basel ASRF Dashboard"/>](#3-basel-single-factor-asrf-closed-form) | **[Image 4: Basel Single-Factor (ASRF) Credit VaR]**<br>Calculates regulatory capital under the closed-form Basel II/III ASRF formula. |
+| [<img src="/images/05_model_comparison.png" width="450" alt="Model Comparison Dashboard"/>](#image-5-credit-var-model-comparison) | **[Image 5: Credit VaR Model Comparison]**<br>Side-by-side comparison highlighting risk metric divergence across concentrated portfolios. |
+| [<img src="/images/06_probability_of_default.png" width="450" alt="PD Estimation Dashboard"/>](#-the-four-pd-estimation-methods) | **[Image 6: Probability of Default (PD) Suite]**<br>Standalone PD estimation suite for individual obligors/bonds across 4 institutional methods. |
+| [<img src="/images/07_settings.png" width="450" alt="Settings Dashboard"/>](#-global-configuration--settings) | **[Image 7: Settings — Global Model Inputs]**<br>Centralized management for rating scales, transition matrices, and market yield curves. |
+
+---
+
 
 ---
 
