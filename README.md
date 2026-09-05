@@ -173,21 +173,6 @@ these are not part of the portfolio Credit VaR pipeline above.
    cumulative survival probability directly from the spread, then
    difference across periods for unconditional/conditional PDs.
 
-## What was fixed vs. the original notebook
-
-Restructuring the original notebook into an importable package surfaced a
-few issues that were sitting quietly in the original. Flagged here in
-detail since some of them change the numbers, not just the formatting.
-
-| # | Where | Issue | Fix |
-|---|-------|-------|-----|
-| 1 | `valuation.value_forward` | A loop meant to compute one forward rate per coupon date reassigned the *same* scalar variable each iteration, so every cash flow was discounted with only the last period's rate. | Build an array of forward rates, one per payment date, and discount each cash flow with its own. |
-| 2 | `credit_var/merton_kmv.run_kmv_simulation` | The function's parameter is `n_sims`, but the event-summary table was built off a *global* `n_sim` variable instead — invisible only because the one call in the notebook happened to pass the same value. | Use the local `n_sims` parameter consistently. This matters as soon as a dashboard slider changes `n_sims` on its own. |
-| 3 | `curves.get_forward_rate` (was `get_forward`) | Relied on `CubicSpline` being imported by an unrelated *later* notebook cell — it only worked because of the notebook's top-to-bottom execution order, not the function's own structure. | Explicit imports in every module. |
-| 4 | `credit_var/basel_single_factor.run_single_factor_basel` | Hardcoded `M = 2.5` for every firm, discarding each firm's own `years_to_maturity` that was already present in the portfolio data — defeating the point of Basel's maturity adjustment. | Default `M` to each firm's own maturity (clipped to Basel's [1, 5] range), with an optional flat override for sensitivity testing. |
-| 5 | `default_probability/jarrow_turnbull.run_jarrow_turnbull_one_pd` | Built payment dates in *descending* order, then called `np.sort()` on the resulting *probability* arrays as an implicit reversal — correct only by coincidence for a constant hazard rate, since that sequence happens to be monotonic. | Sort payment dates ascending up front and build survival/default probabilities directly in chronological order — the same explicit pattern already used correctly in the term-structure variant. |
-| 6 | `credit_var/merton_kmv` and `credit_var/credit_metrics` | Two event-summary tables were built with pure-Python loops over every single simulation draw — fine once in a notebook, but a multi-second freeze on every slider drag in an interactive dashboard. | Vectorized with NumPy bit-packing / pandas string ops so only the (small) number of *distinct* outcomes is ever handled in Python. |
-
 ## Known limitations
 
 Documented, deliberately **not** changed:
