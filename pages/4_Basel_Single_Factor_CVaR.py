@@ -102,9 +102,9 @@ transition_matrix_n = cached_transition_matrix_n(
     st.session_state["transition_matrix"], rating_labels, st.session_state["loss_horizon"]
 )
 maturity_override = None if st.session_state["basel_use_firm_maturity"] else float(st.session_state["basel_maturity_override"])
-
+confidence = st.session_state["confidence_creditmetrics"]
 try:
-    results = cached_basel(portfolio, transition_matrix_n, maturity_override, st.session_state["confidence_creditmetrics"])
+    results = cached_basel(portfolio, transition_matrix_n, maturity_override, confidence)
 except KeyError as exc:
     st.error(
         f"Every firm's rating must exist in the rating scale ({', '.join(rating_labels)}). "
@@ -115,7 +115,7 @@ except KeyError as exc:
 st.subheader("Results")
 m1, m2, m3 = st.columns(3)
 m1.metric("Expected Loss", f"{results['expected_loss']:,.2f}")
-m2.metric(f"CVaR (Total Risk, {st.session_state['confidence_creditmetrics']*100:.1%}%)", f"{results['var']:,.2f}")
+m2.metric(f"CVaR (Total Risk, {confidence * 100:.1%}%)", f"{results['var']:,.2f}")
 m3.metric("Capital Requirement (Economic Capital)", f"{results['economic_capital']:,.2f}")
 
 left, right = st.columns([3, 2])
