@@ -94,7 +94,7 @@ try:
     credit_metrics = cached_credit_metrics(
         portfolio, transition_matrix_n, rating_labels, spot_rating, loss_horizon, confidence, n_sims, seed,
     )
-    basel = cached_basel(portfolio, transition_matrix_n, maturity)
+    basel = cached_basel(portfolio, transition_matrix_n, maturity, confidence)
 except KeyError as exc:
     st.error(
         f"Every firm's rating must exist in the rating scale ({', '.join(rating_labels)}). "
