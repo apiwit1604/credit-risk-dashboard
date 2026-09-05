@@ -104,7 +104,7 @@ transition_matrix_n = cached_transition_matrix_n(
 maturity_override = None if st.session_state["basel_use_firm_maturity"] else float(st.session_state["basel_maturity_override"])
 
 try:
-    results = cached_basel(portfolio, transition_matrix_n, maturity_override)
+    results = cached_basel(portfolio, transition_matrix_n, maturity_override, st.session_state["confidence_creditmetrics"])
 except KeyError as exc:
     st.error(
         f"Every firm's rating must exist in the rating scale ({', '.join(rating_labels)}). "
