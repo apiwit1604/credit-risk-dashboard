@@ -22,6 +22,7 @@ def render_sidebar():
         st.divider()
 
         # Navigation
+        st.caption("INTRODUCTION")
         st.page_link("app.py", label="Overview & Introduction")
         st.divider()
 
@@ -38,14 +39,6 @@ def render_sidebar():
 
         st.caption("SYSTEM CONFIGURATION")
         st.page_link("pages/7_Settings.py", label="Settings")
-        st.divider()
-
-        # Status Panel
-        with st.container():
-            st.caption("PORTFOLIO STATE")
-            st.markdown("**Shared State:** Active")
-            st.caption("Changes in portfolio data or settings will sync dynamically across all pages.")
-
         st.divider()
 
         # Developer Credit & License
