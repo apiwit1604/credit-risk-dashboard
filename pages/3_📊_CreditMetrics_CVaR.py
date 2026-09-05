@@ -14,7 +14,7 @@ init_state()
 
 st.title("CreditMetrics Rating-Migration Credit VaR")
 
-with st.expander("📖 Methodology", expanded=False):
+with st.expander("Methodology", expanded=False):
     st.markdown(
         r"""
 Instead of asking "did the firm default?", CreditMetrics asks **"what
