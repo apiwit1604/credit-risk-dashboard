@@ -77,7 +77,7 @@ with c2:
         value=st.session_state["confidence_creditmetrics"],
     )
 
-st.write("---")
+st.write("")
 c3, c4 = st.columns(2)
 
 with c3:
