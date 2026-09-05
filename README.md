@@ -220,14 +220,6 @@ Documented, deliberately **not** changed:
   solve the two Merton equations, rather than the more standard exact
   2-equation solve (e.g. `scipy.optimize.fsolve`). The heuristic works, but
   depends on the `weight_sigma` penalty and the optimizer's convergence.
-- **Portfolio-level correlation** in Merton–KMV and CreditMetrics is a
-  single-factor model — every firm loads on the same one systematic
-  factor. A multi-factor or empirical correlation matrix would capture
-  sector/geography structure that a single factor cannot.
-- **Rating scale changes on the Settings page** (adding/removing a rating
-  category, not just renaming one) require manually resizing the
-  transition matrix to match — the app validates this but doesn't
-  automate reshaping the matrix itself.
 
 ## License
 
