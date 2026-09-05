@@ -7,9 +7,9 @@ import streamlit as st
 
 from src.compute import cached_basel, cached_transition_matrix_n
 from src.state import init_state
-from src.ui_components import render_portfolio_editor
+from src.ui_components import render_model_portfolio_editor
 
-st.set_page_config(page_title="Basel Single-Factor Credit VaR", layout="wide")
+st.set_page_config(page_title="Basel Single-Factor Credit VaR", page_icon="🏦", layout="wide")
 init_state()
 
 st.title("Basel Single-Factor (ASRF) Credit VaR")
@@ -49,11 +49,16 @@ $$
         "**Correction applied here:** the original notebook hardcoded M = 2.5 for "
         "every firm. This version defaults M to each firm's own `years_to_maturity` "
         "(the Basel maturity adjustment only means something if M reflects the "
-        "exposure's actual remaining life) — toggle back to a flat M below to compare."
+        "exposure's actual remaining life) — toggle back to a flat M below to compare.",
+        icon="🔧",
     )
 
 st.subheader("Portfolio")
-render_portfolio_editor(key="portfolio_editor_basel", caption="Shared across Pages 2–5 — edit here or on any other page.")
+render_model_portfolio_editor(
+    "basel", key="portfolio_editor_basel",
+    caption="Only the fields the Basel formula reads: Firm, Rating, EAD, LGD. "
+            "Asset value/correlation/coupon are edited on the other Credit VaR pages.",
+)
 portfolio = st.session_state["portfolio"]
 
 st.subheader("Model settings")
@@ -77,7 +82,11 @@ with c3:
             value=float(st.session_state["basel_maturity_override"]), step=0.5,
         )
     else:
-        st.caption("Maturity (M) taken from each firm's `years_to_maturity`, clipped to Basel's [1, 5] range.")
+        st.caption(
+            "Maturity (M) taken from each firm's `years_to_maturity` (clipped to Basel's [1, 5] range) — "
+            "that field isn't shown on this page's table, but it's the same shared firm record you can "
+            "edit on the CreditMetrics or Model Comparison page."
+        )
 
 st.caption("Confidence level: **99.9%** (fixed by the Basel IRB framework — not adjustable).")
 
