@@ -117,7 +117,7 @@ except KeyError as exc:
 st.subheader("Results")
 m1, m2, m3 = st.columns(3)
 m1.metric("Expected Loss", f"{results['expected_loss']:,.2f}")
-m2.metric("CVaR (Total Risk, 99.9%)", f"{results['var']:,.2f}")
+m2.metric(f"CVaR (Total Risk, {st.session_state['confidence_creditmetrics']*100:.1%}%)", f"{results['var']:,.2f}")
 m3.metric("Capital Requirement (Economic Capital)", f"{results['economic_capital']:,.2f}")
 
 left, right = st.columns([3, 2])
