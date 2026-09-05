@@ -7,7 +7,7 @@ import streamlit as st
 
 from src.compute import cached_kmv
 from src.state import init_state
-from src.ui_components import render_portfolio_editor
+from src.ui_components import render_model_portfolio_editor
 
 st.set_page_config(page_title="Merton–KMV Credit VaR", layout="wide")
 init_state()
@@ -47,7 +47,11 @@ confidence level; **Expected Shortfall** is the average loss *beyond* VaR;
     )
 
 st.subheader("Portfolio")
-render_portfolio_editor(key="portfolio_editor_kmv", caption="Shared across Pages 2–5 — edit here or on any other page.")
+render_model_portfolio_editor(
+    "kmv", key="portfolio_editor_kmv",
+    caption="Only the fields Merton–KMV reads: Firm, Asset Corr., Asset Value, EAD, Asset Drift, Asset Vol, LGD. "
+            "Rating/maturity/coupon are edited on the CreditMetrics or Model Comparison page — the firm record is shared.",
+)
 portfolio = st.session_state["portfolio"]
 
 st.subheader("Simulation settings")
