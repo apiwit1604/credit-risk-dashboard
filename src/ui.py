@@ -1,34 +1,47 @@
 # src/ui.py
 import streamlit as st
 
+
 def render_sidebar():
     """Render a clean, unified sidebar navigation across all Streamlit pages."""
 
+    # Custom CSS: ซ่อน Default Nav + ปรับระยะห่างเส้นขีดใต้ (Border) และระยะเว้นบรรทัด
     st.markdown(
         """
         <style>
+            /* ซ่อน Default Multi-page Navigation ด้านบน */
             [data-testid="stSidebarNav"] {
                 display: none !important;
             }
             
+            /* สร้างเส้นขีดใต้ที่ชิดกับข้อความ Caption ด้านบน */
             .sidebar-caption {
                 font-size: 0.75rem;
                 color: #808495;
                 font-weight: 600;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
-                margin-bottom: 2px;
+                margin-bottom: 2px; /* ดึงเส้นให้เข้ามาใกล้ข้อความ */
             }
             
+            /* เส้นขีดใต้ Custom ที่ชิดข้อความ */
             .tight-divider {
                 border-bottom: 1px solid rgba(250, 250, 250, 0.2);
                 margin-top: 2px;
-                margin-bottom: 24px;
+                margin-bottom: 24px; /* ระยะเว้นบรรทัดยาวลงไปถึงเมนูด้านล่าง */
             }
             
             /* ระยะห่างระหว่าง Section */
             .section-spacer {
-                margin-bottom: 32px;
+                margin-bottom: 32px; /* เว้นระยะห่างยาวนิดหน่อยระหว่างกลุ่มเมนู */
+            }
+
+            /* สไตล์สำหรับข้อความในส่วน Developer & License ให้ขนาดเท่ากันทั้งหมด */
+            .license-text {
+                font-size: 0.8rem;
+                color: #A3A8B8;
+                line-height: 1.5;
+                margin-bottom: 4px;
             }
         </style>
         """,
@@ -103,11 +116,6 @@ def render_sidebar():
             '<div class="sidebar-caption">DEVELOPER & LICENSE</div>',
             unsafe_allow_html=True,
         )
-        st.markdown(
-            '<div class="sidebar-caption">DEVELOPER & LICENSE</div>',
-            unsafe_allow_html=True,
-        )
-        
         st.markdown('<div class="tight-divider"></div>', unsafe_allow_html=True)
         st.markdown(
             '<div class="license-text"><b>Developed by:</b> Apiwit Oonworg</div>',
