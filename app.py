@@ -9,7 +9,6 @@ from src.state import init_state
 # Config หน้าจอหลัก
 st.set_page_config(
     page_title="Credit Risk Dashboard — Introduction",
-    page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
