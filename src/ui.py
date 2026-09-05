@@ -117,11 +117,5 @@ def render_sidebar():
             unsafe_allow_html=True,
         )
         st.markdown('<div class="tight-divider"></div>', unsafe_allow_html=True)
-        st.markdown(
-            '<div class="license-text"><b>Developed by:</b> Apiwit Oonworg</div>',
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            '<div class="license-text">© 2026 Apiwit Oonworg. All rights reserved.</div>',
-            unsafe_allow_html=True,
-        )
+        st.markdown("**Developed by:** Apiwit Oonworg")
+        st.caption("© 2026 Apiwit Oonworg. All rights reserved.")
