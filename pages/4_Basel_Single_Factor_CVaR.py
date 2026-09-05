@@ -75,7 +75,16 @@ with c2:
         "Use each firm's own maturity (recommended)",
         value=st.session_state["basel_use_firm_maturity"],
     )
+
 with c3:
+    st.session_state["confidence_creditmetrics"] = st.select_slider(
+        "Confidence level", options=[0.95, 0.99, 0.995, 0.999],
+        value=st.session_state["confidence_creditmetrics"],
+    )
+
+st.subheader("Firm maturity")
+
+with c4:
     if not st.session_state["basel_use_firm_maturity"]:
         st.session_state["basel_maturity_override"] = st.number_input(
             "Flat maturity M for every firm (years)", min_value=1.0, max_value=5.0,
@@ -87,11 +96,7 @@ with c3:
             "that field isn't shown on this page's table, but it's the same shared firm record you can "
             "edit on the CreditMetrics or Model Comparison page."
         )
-with c4:
-    st.session_state["confidence_creditmetrics"] = st.select_slider(
-        "Confidence level", options=[0.95, 0.99, 0.995, 0.999],
-        value=st.session_state["confidence_creditmetrics"],
-    )
+
 
 if not portfolio:
     st.warning("Add at least one firm to the portfolio to run the model.")
