@@ -103,6 +103,17 @@ def render_sidebar():
             '<div class="sidebar-caption">DEVELOPER & LICENSE</div>',
             unsafe_allow_html=True,
         )
+        st.markdown(
+            '<div class="sidebar-caption">DEVELOPER & LICENSE</div>',
+            unsafe_allow_html=True,
+        )
+        
         st.markdown('<div class="tight-divider"></div>', unsafe_allow_html=True)
-        st.markdown('<div class=**Developed by:** Apiwit Oonworg></div>', unsafe_allow_html=True)
-        st.caption('<div class= © 2026 Apiwit Oonworg. All rights reserved.></div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="license-text"><b>Developed by:</b> Apiwit Oonworg</div>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            '<div class="license-text">© 2026 Apiwit Oonworg. All rights reserved.</div>',
+            unsafe_allow_html=True,
+        )
