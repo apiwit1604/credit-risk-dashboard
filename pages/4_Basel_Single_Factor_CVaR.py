@@ -19,8 +19,7 @@ with st.expander("Methodology", expanded=False):
         r"""
 Unlike the two Monte Carlo models, this is the **closed-form** regulatory
 capital formula behind Basel II/III's corporate IRB approach — no
-simulation, fixed at a **99.9% confidence level by regulation**, not a
-user choice.
+simulation.
 
 **Asset correlation** (Basel's corporate formula):
 $$
