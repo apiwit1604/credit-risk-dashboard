@@ -38,14 +38,14 @@ one of those pages and the others pick it up immediately.
 
 ```
 credit-risk-dashboard/
-├── app.py                              # Page 1 — Introduction (Streamlit entry point)
+├── app.py                               # Page 1 — Introduction (Streamlit entry point)
 ├── pages/
-│   ├── 2_Merton_KMV_CVaR.py          # Page 2 — structural Monte Carlo CVaR
-│   ├── 3_CreditMetrics_CVaR.py       # Page 3 — rating-migration Monte Carlo CVaR
-│   ├── 4_Basel_Single_Factor_CVaR.py # Page 4 — closed-form regulatory CVaR
-│   ├── 5_Model_Comparison.py         # Page 5 — all three CVaR models side by side
-│   ├── 6_Probability_of_Default.py   # Page 6 — four PD methods
-│   └── 7_Settings.py                 # Page 7 — rating scale / transition matrix / curves
+│   ├── 2_Merton_KMV_CVaR.py             # Page 2 — structural Monte Carlo CVaR
+│   ├── 3_CreditMetrics_CVaR.py          # Page 3 — rating-migration Monte Carlo CVaR
+│   ├── 4_Basel_Single_Factor_CVaR.py    # Page 4 — closed-form regulatory CVaR
+│   ├── 5_Model_Comparison.py            # Page 5 — all three CVaR models side by side
+│   ├── 6_Probability_of_Default.py      # Page 6 — four PD methods
+│   └── 7_Settings.py                    # Page 7 — rating scale / transition matrix / curves
 ├── src/                                 # Framework-agnostic modeling library (no Streamlit imports)
 │   ├── config.py                        # Default market data & demo portfolio
 │   ├── curves.py                        # Transition-matrix power, spot curves, forward rates
