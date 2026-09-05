@@ -77,5 +77,5 @@ st.divider()
 st.caption(
     "Built with Streamlit, NumPy, pandas, SciPy and Plotly. "
     "Use the sidebar to navigate between pages — the portfolio you edit on "
-    "any of Pages 2–5 is shared across all of them."
+    "any of Pages (Merton KMV CVaR, CreditMetrics CVaR,Basel Single-Factor CVaR and Model Comparison) is shared across all of them."
 )
