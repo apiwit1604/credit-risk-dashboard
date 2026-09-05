@@ -49,8 +49,7 @@ $$
         "**Correction applied here:** the original notebook hardcoded M = 2.5 for "
         "every firm. This version defaults M to each firm's own `years_to_maturity` "
         "(the Basel maturity adjustment only means something if M reflects the "
-        "exposure's actual remaining life) — toggle back to a flat M below to compare.",
-        icon="🔧",
+        "exposure's actual remaining life) — toggle back to a flat M below to compare."
     )
 
 st.subheader("Portfolio")
