@@ -17,15 +17,59 @@ page so nothing is hardcoded.
 
 *Click on any image to open the full screenshot or jump directly to its model specification section:*
 
-| Dashboard Interface | Module & Description |
-| :--- | :--- |
-| [![Image 1: Introduction Page](images/01_introduction.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/) | **[Image 1: Introduction Page](#image-1-introduction-page)**<br>System overview detailing dashboard navigation, framework connections, and project architecture. |
-| [![Image 2: Merton–KMV Credit VaR](images/02_merton_kmv.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR) | **[Image 2: Merton–KMV Structural Credit VaR](#1-mertonkmv-structural-asset-value-monte-carlo)**<br>Simulates asset value paths via a 1-factor Gaussian copula to evaluate portfolio default distributions. |
-| [![Image 3: CreditMetrics Credit VaR](images/03_creditmetrics.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR) | **[Image 3: CreditMetrics Rating-Migration Credit VaR](#2-creditmetrics-rating-migration-monte-carlo)**<br>Simulates credit rating migrations and revalues exposures along yield and credit spread curves. |
-| [![Image 4: Basel Single-Factor Credit VaR](images/04_basel_asrf.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR) | **[Image 4: Basel Single-Factor (ASRF) Credit VaR](#3-basel-single-factor-asrf-closed-form)**<br>Calculates regulatory capital under the closed-form Basel II/III ASRF formula. |
-| [![Image 5: Model Comparison](images/05_model_comparison.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison) | **[Image 5: Credit VaR Model Comparison](#image-5-credit-var-model-comparison)**<br>Side-by-side comparison highlighting risk metric divergence across concentrated portfolios. |
-| [![Image 6: Probability of Default Suite](images/06_probability_of_default.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default) | **[Image 6: Probability of Default (PD) Suite](#-the-four-pd-estimation-methods)**<br>Standalone PD estimation suite for individual obligors/bonds across 4 institutional methods. |
-| [![Image 7: Settings Dashboard](images/07_settings.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings) | **[Image 7: Settings — Global Model Inputs](#-global-configuration--settings)**<br>Centralized management for rating scales, transition matrices, and market yield curves. |
+### 1. Introduction Page
+[![Image 1: Introduction Page](images/01_introduction.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/)
+
+* **Live Demo:** [Open Introduction Page ↗](https://credit-risk-models-by-apiwit1604.streamlit.app/)
+* **Overview:** Provides a comprehensive system overview, detailing dashboard navigation, framework interconnections, and project architecture.
+
+---
+
+### 2. Merton–KMV Structural Credit VaR
+[![Image 2: Merton–KMV Credit VaR](images/02_merton_kmv.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR)
+
+* **Live Demo:** [Open Merton–KMV Module ↗](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR)
+* **Overview:** Simulates asset value paths via a 1-factor Gaussian copula to evaluate portfolio default distributions, empirical VaR, and Expected Shortfall.
+
+---
+
+### 3. CreditMetrics Rating-Migration Credit VaR
+[![Image 3: CreditMetrics Credit VaR](images/03_creditmetrics.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR)
+
+* **Live Demo:** [Open CreditMetrics Module ↗](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR)
+* **Overview:** Simulates credit rating migrations across fractional transition matrices and revalues exposures along risk-free yield and credit spread curves.
+
+---
+
+### 4. Basel Single-Factor (ASRF) Credit VaR
+[![Image 4: Basel Single-Factor Credit VaR](images/04_basel_asrf.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR)
+
+* **Live Demo:** [Open Basel ASRF Module ↗](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR)
+* **Overview:** Calculates closed-form regulatory capital requirements under the Basel II/III Asymptotic Single-Risk Factor (ASRF) framework.
+
+---
+
+### 5. Credit VaR Model Comparison
+[![Image 5: Model Comparison](images/05_model_comparison.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)
+
+* **Live Demo:** [Open Model Comparison Module ↗](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)
+* **Overview:** Side-by-side comparison highlighting risk metric divergence across concentrated portfolios between structural, migration, and regulatory models.
+
+---
+
+### 6. Probability of Default (PD) Suite
+[![Image 6: Probability of Default Suite](images/06_probability_of_default.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)
+
+* **Live Demo:** [Open PD Estimation Suite ↗](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)
+* **Overview:** Standalone PD estimation suite for individual obligors or bonds utilizing Merton Structural, Jarrow–Turnbull, and Credit-Spread Bootstrap methods.
+
+---
+
+### 7. Settings — Global Model Inputs
+[![Image 7: Settings Dashboard](images/07_settings.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings)
+
+* **Live Demo:** [Open Settings Module ↗](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings)
+* **Overview:** Centralized management console for rating scales, fractional transition matrices, and market zero/forward yield curves.
 
 ---
 
