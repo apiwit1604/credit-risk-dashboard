@@ -1,3 +1,19 @@
+<div align="center">
+
+# 📊 Portfolio Credit Risk Dashboard
+
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/streamlit-1.30+-FF4B4B.svg)](https://streamlit.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+*An enterprise-grade financial analytics dashboard comparing **Credit Value-at-Risk (Credit VaR)** frameworks and **Probability of Default (PD)** estimation methods.*
+
+[Quick Start](#-quick-start) • [Architecture](#-project-structure) • [Models Overview](#-the-three-credit-var-models) • [PD Suite](#-the-four-pd-estimation-methods) • [Settings](#-global-configuration--settings)
+
+</div>
+
+
 # Portfolio Credit Risk Dashboard
 
 An interactive Streamlit dashboard comparing three portfolio **Credit
