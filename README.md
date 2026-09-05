@@ -1,4 +1,4 @@
-# Portfolio Credit Risk Dashboard
+# Credit Risk Dashboard
 
 An interactive Streamlit dashboard comparing three portfolio **Credit
 Value-at-Risk (Credit VaR)** frameworks and four **Probability of Default
