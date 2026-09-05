@@ -130,7 +130,7 @@ credit spread.
     st.dataframe(table_1.style.format("{:.4f}"), width="stretch")
 
 with tab_jtn:
-    with st.expander("📖 Methodology", expanded=False):
+    with st.expander("Methodology", expanded=False):
         st.markdown(
             r"""
 Same idea as the flat-PD model, but with one free hazard rate $PD_t$ per
