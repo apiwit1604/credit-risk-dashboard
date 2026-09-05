@@ -14,7 +14,7 @@ import streamlit as st
 from src import config
 from src.state import init_state, reset_settings_to_default
 
-st.set_page_config(page_title="Settings", page_icon="⚙️", layout="wide")
+st.set_page_config(page_title="Settings", layout="wide")
 init_state()
 
 st.title("Settings — Global Model Inputs")
