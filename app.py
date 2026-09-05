@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """Page 1 — Introduction. Entry point of the Streamlit multipage app."""
-from __future__ import annotations
-
 import streamlit as st
 
 from src.state import init_state
