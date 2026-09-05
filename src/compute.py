@@ -43,5 +43,5 @@ def cached_credit_metrics(
 
 
 @st.cache_data(show_spinner=False)
-def cached_basel(portfolio, transition_matrix_n, maturity_override: Optional[float]) -> dict:
-    return run_single_factor_basel(portfolio, transition_matrix_n, maturity_override)
+def cached_basel(portfolio, transition_matrix_n, maturity_override: Optional[float], confidence_level: float) -> dict:
+    return run_single_factor_basel(portfolio, transition_matrix_n, maturity_override, confidence)
