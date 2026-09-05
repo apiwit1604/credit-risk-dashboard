@@ -131,7 +131,7 @@ st.caption(
     "Highest-loss joint migration outcomes across the simulated draws. "
     "Scenario order matches the portfolio table (Firm 1, Firm 2, …)."
 )
-top_events = results["event_summary"].head(15).copy()
+top_events = results["event_summary"].copy()
 top_events["Probability"] = top_events["Probability"].map(lambda x: f"{x:.4%}")
 top_events["Loss_Amount"] = top_events["Loss_Amount"].map(lambda x: f"{x:,.2f}")
 st.dataframe(top_events, width="stretch", hide_index=True)
