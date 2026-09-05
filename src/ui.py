@@ -4,35 +4,31 @@ import streamlit as st
 def render_sidebar():
     """Render a clean, unified sidebar navigation across all Streamlit pages."""
 
-    # Custom CSS: ซ่อน Default Nav + ปรับระยะห่างเส้นขีดใต้ (Border) และระยะเว้นบรรทัด
     st.markdown(
         """
         <style>
-            /* ซ่อน Default Multi-page Navigation ด้านบน */
             [data-testid="stSidebarNav"] {
                 display: none !important;
             }
             
-            /* สร้างเส้นขีดใต้ที่ชิดกับข้อความ Caption ด้านบน */
             .sidebar-caption {
                 font-size: 0.75rem;
                 color: #808495;
                 font-weight: 600;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
-                margin-bottom: 2px; /* ดึงเส้นให้เข้ามาใกล้ข้อความ */
+                margin-bottom: 2px;
             }
             
-            /* เส้นขีดใต้ Custom ที่ชิดข้อความ */
             .tight-divider {
                 border-bottom: 1px solid rgba(250, 250, 250, 0.2);
                 margin-top: 2px;
-                margin-bottom: 24px; /* ระยะเว้นบรรทัดยาวลงไปถึงเมนูด้านล่าง */
+                margin-bottom: 24px;
             }
             
             /* ระยะห่างระหว่าง Section */
             .section-spacer {
-                margin-bottom: 32px; /* เว้นระยะห่างยาวนิดหน่อยระหว่างกลุ่มเมนู */
+                margin-bottom: 32px;
             }
         </style>
         """,
