@@ -9,7 +9,7 @@ from src.compute import cached_kmv
 from src.state import init_state
 from src.ui_components import render_portfolio_editor
 
-st.set_page_config(page_title="Merton–KMV Credit VaR", page_icon="📉", layout="wide")
+st.set_page_config(page_title="Merton–KMV Credit VaR", layout="wide")
 init_state()
 
 st.title("Merton–KMV Structural Credit VaR")
