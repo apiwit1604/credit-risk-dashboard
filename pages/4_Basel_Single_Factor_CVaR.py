@@ -62,7 +62,7 @@ render_model_portfolio_editor(
 portfolio = st.session_state["portfolio"]
 
 st.subheader("Model settings")
-c1, c2, c3, c4 = st.columns(4)
+c1, c2, c3 = st.columns(3)
 with c1:
     st.session_state["loss_horizon"] = st.number_input(
         "Loss horizon for the transition matrix (years)", min_value=0.08, max_value=5.0,
@@ -83,8 +83,8 @@ with c3:
     )
 
 st.subheader("Firm maturity")
-
-with c4:
+p1 = st.columns(1)
+with p1:
     if not st.session_state["basel_use_firm_maturity"]:
         st.session_state["basel_maturity_override"] = st.number_input(
             "Flat maturity M for every firm (years)", min_value=1.0, max_value=5.0,
