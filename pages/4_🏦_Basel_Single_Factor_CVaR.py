@@ -9,12 +9,12 @@ from src.compute import cached_basel, cached_transition_matrix_n
 from src.state import init_state
 from src.ui_components import render_portfolio_editor
 
-st.set_page_config(page_title="Basel Single-Factor Credit VaR", page_icon="🏦", layout="wide")
+st.set_page_config(page_title="Basel Single-Factor Credit VaR", layout="wide")
 init_state()
 
-st.title("🏦 Basel Single-Factor (ASRF) Credit VaR")
+st.title("Basel Single-Factor (ASRF) Credit VaR")
 
-with st.expander("📖 Methodology", expanded=False):
+with st.expander("Methodology", expanded=False):
     st.markdown(
         r"""
 Unlike the two Monte Carlo models, this is the **closed-form** regulatory
