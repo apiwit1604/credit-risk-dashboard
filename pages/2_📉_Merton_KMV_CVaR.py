@@ -12,9 +12,9 @@ from src.ui_components import render_portfolio_editor
 st.set_page_config(page_title="Merton–KMV Credit VaR", page_icon="📉", layout="wide")
 init_state()
 
-st.title("📉 Merton–KMV Structural Credit VaR")
+st.title("Merton–KMV Structural Credit VaR")
 
-with st.expander("📖 Methodology", expanded=False):
+with st.expander("Methodology", expanded=False):
     st.markdown(
         r"""
 Each firm's assets are simulated one year (or `loss_horizon`) forward under
