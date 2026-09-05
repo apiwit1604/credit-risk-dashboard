@@ -16,10 +16,10 @@ from src.compute import (
 from src.state import init_state
 from src.ui_components import render_portfolio_editor
 
-st.set_page_config(page_title="Credit VaR Model Comparison", page_icon="🧮", layout="wide")
+st.set_page_config(page_title="Credit VaR Model Comparison", layout="wide")
 init_state()
 
-st.title("🧮 Credit VaR Model Comparison")
+st.title("Credit VaR Model Comparison")
 st.caption(
     "Runs the same portfolio through Merton–KMV, CreditMetrics, and Basel Single-Factor, "
     "using the simulation settings already chosen on Pages 2–4."
@@ -62,8 +62,7 @@ st.info(
     f"Loss horizon = {loss_horizon:g}y · KMV: {st.session_state['n_sim_kmv']:,} sims @ "
     f"{st.session_state['confidence_kmv']:.1%} · CreditMetrics: {st.session_state['n_sim_creditmetrics']:,} sims @ "
     f"{st.session_state['confidence_creditmetrics']:.1%} · Basel: closed-form @ 99.9% (fixed). "
-    "Adjust these on Pages 2–4.",
-    icon="ℹ️",
+    "Adjust these on Pages 2–4."
 )
 
 comparison = pd.DataFrame({
