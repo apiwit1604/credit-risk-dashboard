@@ -21,6 +21,7 @@ def run_single_factor_basel(
     portfolio: Sequence[dict],
     transition_matrix_n: pd.DataFrame,
     maturity_override: Optional[float] = None,
+    confidence_level: float = BASEL_CONFIDENCE,
 ) -> dict:
     """
     Parameters
@@ -44,6 +45,7 @@ def run_single_factor_basel(
         # exactly PD = 0. Floor away from both boundaries rather than let
         # -inf/NaN propagate silently into the results table.
         pd_ = float(np.clip(pd_raw, 1e-6, 1 - 1e-6))
+        confidence = float(np.clip(confidence_level, 1e-6, 1 - 1e-6))
 
         # --- Correction vs. the original notebook -----------------------
         # The original hardcoded M = 2.5 for every firm, discarding the
@@ -63,7 +65,7 @@ def run_single_factor_basel(
         maturity_adjustment = (1 + (m - 2.5) * b) / (1 - 1.5 * b)
 
         wcdr = norm.cdf(
-            (1 - corr) ** -0.5 * norm.ppf(pd_) + (corr / (1 - corr)) ** 0.5 * norm.ppf(BASEL_CONFIDENCE)
+            (1 - corr) ** -0.5 * norm.ppf(pd_) + (corr / (1 - corr)) ** 0.5 * norm.ppf(confidence_level)
         )
         el_rate = pd_ * lgd
         k_ratio = (lgd * wcdr - el_rate) * maturity_adjustment
