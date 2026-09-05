@@ -33,7 +33,17 @@ def run_single_factor_basel(
     rows = []
     for firm in portfolio:
         ead, lgd = firm["ead"], firm["lgd"]
-        pd_ = float(transition_matrix_n.loc[firm["rating"], "D"])
+        pd_raw = float(transition_matrix_n.loc[firm["rating"], "D"])
+
+        # --- Robustness fix -----------------------------------------------
+        # The formula needs ln(PD) and Φ⁻¹(PD), both undefined at PD = 0 (and
+        # Φ⁻¹ blows up at PD = 1 too). A literal PD of exactly 0 is a real
+        # possibility here, not just a theoretical edge case — e.g. a rating
+        # freshly added on the Settings page defaults to "100% stays put"
+        # until its transition-matrix row is filled in for real, which is
+        # exactly PD = 0. Floor away from both boundaries rather than let
+        # -inf/NaN propagate silently into the results table.
+        pd_ = float(np.clip(pd_raw, 1e-6, 1 - 1e-6))
 
         # --- Correction vs. the original notebook -----------------------
         # The original hardcoded M = 2.5 for every firm, discarding the

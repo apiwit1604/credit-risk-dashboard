@@ -41,6 +41,11 @@ def init_state() -> None:
         "compare_confidence": config.DEFAULT_CONFIDENCE_KMV,
         "compare_seed": 42,
         "compare_maturity": 2.5,
+        # Bumped every time the Settings page reshapes the transition
+        # matrix / credit-spread curve to a new rating scale, so their
+        # data_editor widgets get a fresh key and don't try to replay an
+        # old edit-diff against a differently-shaped table.
+        "settings_version": 0,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
