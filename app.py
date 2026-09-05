@@ -36,19 +36,19 @@ st.subheader("How the pages fit together")
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.markdown("#### Page 2 — Merton–KMV")
+    st.markdown("#### Merton–KMV")
     st.markdown(
         "Structural, asset-value Monte Carlo model. A firm defaults when its "
         "simulated asset value falls below its EAD at the risk horizon."
     )
 with col2:
-    st.markdown("#### Page 3 — CreditMetrics")
+    st.markdown("#### CreditMetrics")
     st.markdown(
         "Rating-migration Monte Carlo model. Firms are revalued under every "
         "possible future rating, weighted by simulated migration outcomes."
     )
 with col3:
-    st.markdown("#### Page 4 — Basel Single-Factor")
+    st.markdown("#### Basel Single-Factor")
     st.markdown(
         "Closed-form Basel II/III ASRF formula — the regulatory capital "
         "calculation, fixed at a 99.9% confidence level by definition."
@@ -56,17 +56,17 @@ with col3:
 
 col4, col5 = st.columns(2)
 with col4:
-    st.markdown("#### Page 5 — Model Comparison")
+    st.markdown("#### Model Comparison")
     st.markdown("Runs the same portfolio through all three models above and lines up the results.")
 with col5:
-    st.markdown("#### Page 6 — Probability of Default")
+    st.markdown("#### Probability of Default")
     st.markdown(
         "Four independent PD estimation methods: Merton's structural model, "
         "Jarrow–Turnbull (flat and term-structure hazard rates), and a "
         "model-free bootstrap from credit spreads."
     )
 
-st.markdown("#### Page 7 — Settings")
+st.markdown("#### Settings")
 st.markdown(
     "The market/model inputs that are hard to eyeball — the rating scale, the "
     "1-year transition matrix, the risk-free curve, and the credit-spread "
