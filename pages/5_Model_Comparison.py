@@ -103,7 +103,7 @@ except KeyError as exc:
     st.stop()
 
 st.info(
-    f"Loss horizon = {loss_horizon:g}y · {n_sims:,} simulations @ {confidence:.1%} for KMV & CreditMetrics & Basel"
+    f"Loss horizon = {loss_horizon:g}y · {n_sims:,} simulations @ {confidence:.1%} for KMV & CreditMetrics & Basel ·"
     f"Basel: closed-form with flat M = {maturity:g}y."
 )
 
