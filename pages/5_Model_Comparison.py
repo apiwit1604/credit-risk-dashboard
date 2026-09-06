@@ -107,7 +107,7 @@ except KeyError as exc:
 comparison = pd.DataFrame({
     "Model": ["Merton–KMV", "CreditMetrics", "Basel Single-Factor"],
     "Type": ["Structural Monte Carlo", "Rating-migration Monte Carlo", "Closed-form (regulatory)"],
-    "Confidence": [f"{confidence:.1%}", f"{confidence:.1%}", "99.9% (fixed)"],
+    "Confidence": [f"{confidence:.1%}", f"{confidence:.1%}", f"{confidence:.1%}"],
     "Expected Loss": [kmv["expected_loss"], credit_metrics["expected_loss"], basel["expected_loss"]],
     "VaR / CVaR": [kmv["var"], credit_metrics["var"], basel["var"]],
     "Economic Capital": [kmv["economic_capital"], credit_metrics["economic_capital"], basel["economic_capital"]],
