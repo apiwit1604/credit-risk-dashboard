@@ -1,1 +1,83 @@
+# =========================================================================
+# Python & Virtual Environments
+# =========================================================================
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
 
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing & Type checking caches
+.cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Distribution & Build artifacts
+build/
+dist/
+*.egg-info/
+
+# =========================================================================
+# Streamlit Configs & Secrets
+# =========================================================================
+# Hide local secrets and credentials
+.streamlit/secret.toml
+.streamlit/secrets.toml
+
+# =========================================================================
+# Environment Variables & Secrets
+# =========================================================================
+.env
+*.env
+.env.*
+!.env.example
+
+# =========================================================================
+# OS & Editor Metadata
+# =========================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDEs and Text Editors
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# =========================================================================
+# Research Notebooks & Temporary Data
+# =========================================================================
+# Jupyter Notebook checkpoints (from research notebooks)
+.ipynb_checkpoints
+
+# Logs & Temporary files
+*.log
+*.sqlite
+*.db
+tmp/
+temp/
+
+# Note: 'images/' folder is explicitly kept for README UI screenshots.
