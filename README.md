@@ -98,8 +98,7 @@ credit-risk-dashboard/
 │   ├── compute.py                       # st.cache_data wrappers around the pure model functions
 │   ├── ui_components.py                 # Per-model portfolio editors (column-restricted) + full editor
 │   └── ui.py                            # UI Architecture & Component Reusability
-├── docs/
-│   └── images/                          # UI screenshots for documentation                 
+├── images/                              # UI screenshots for documentation                 
 ├── requirements.txt
 ├── LICENSE
 └── .gitignore
