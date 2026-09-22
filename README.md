@@ -1,5 +1,7 @@
 # Credit Risk Dashboard
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://credit-risk-models-by-apiwit1604.streamlit.app/)
+
 An interactive Streamlit dashboard comparing three portfolio **Credit
 Value-at-Risk (Credit VaR)** frameworks and four **Probability of Default
 (PD)** estimation methods, built from a research notebook that has been
