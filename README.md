@@ -247,7 +247,7 @@ Documented, deliberately **not** changed:
 
 ## About
 
-**Apiwit Oonworg**
+**Apiwit Oonwong**
 
 📫 GitHub: https://github.com/apiwit1604 · Email: apiwit.oon@outlook.com
 
