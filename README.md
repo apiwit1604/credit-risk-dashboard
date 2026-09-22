@@ -63,9 +63,9 @@ of hardcoded.
 
 | | |
 | :---: | :---: |
-| **[Introduction](https://credit-risk-models-by-apiwit1604.streamlit.app/)**<br>[![Intro page showing project architecture and framework connections](images/01_introduction.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/) | **[Merton–KMV Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR)**<br>[![Merton-KMV structural Monte Carlo Credit VaR page](images/02_merton_kmv.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR) |
-| **[CreditMetrics Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR)**<br>[![CreditMetrics rating-migration Monte Carlo page](images/03_creditmetrics.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR) | **[Basel ASRF Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR)**<br>[![Basel single-factor closed-form Credit VaR page](images/04_basel_asrf.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR) |
-| **[Model Comparison](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)**<br>[![Side-by-side comparison of the three Credit VaR models](images/05_model_comparison.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison) | **[PD Suite](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)**<br>[![Probability of Default estimation suite with four methods](images/06_probability_of_default.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default) |
+| **[Introduction](https://credit-risk-models-by-apiwit1604.streamlit.app/)**<br>[![Intro page showing project architecture and framework connections](images/01_introduction.png)] | **[Merton–KMV Credit VaR]**<br>[![Merton-KMV structural Monte Carlo Credit VaR page](images/02_merton_kmv.png)] |
+| **[CreditMetrics Credit VaR]**<br>[![CreditMetrics rating-migration Monte Carlo page](images/03_creditmetrics.png)] | **[Basel ASRF Credit VaR]**<br>[![Basel single-factor closed-form Credit VaR page](images/04_basel_asrf.png)]|
+| **[Model Comparison]**<br>[![Side-by-side comparison of the three Credit VaR models](images/05_model_comparison.png)] | **[PD Suite]**<br>[![Probability of Default estimation suite with four methods](images/06_probability_of_default.png)] |
 
 ## Quick start
 
