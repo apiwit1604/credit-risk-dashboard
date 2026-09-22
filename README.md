@@ -60,12 +60,38 @@ of hardcoded.
 | 07 | **Settings** | Centralized rating scales, transition matrices & yield curves | [![Launch](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings) |
 
 ### Screens
+ 
+<p align="center">
+  <a href="https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR">
+    <img src="images/02_merton_kmv.png" alt="Merton-KMV structural Monte Carlo Credit VaR page" width="100%" />
+  </a>
+  <br><sub><b>Merton–KMV</b> — structural Monte Carlo Credit VaR</sub>
+</p>
+<p align="center">
+  <a href="https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR">
+    <img src="images/03_creditmetrics.png" alt="CreditMetrics rating-migration Monte Carlo page" width="100%" />
+  </a>
+  <br><sub><b>CreditMetrics</b> — rating-migration Monte Carlo, revalued on the forward curve</sub>
+</p>
+<p align="center">
+  <a href="https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR">
+    <img src="images/04_basel_asrf.png" alt="Basel single-factor closed-form Credit VaR page" width="100%" />
+  </a>
+  <br><sub><b>Basel ASRF</b> — closed-form regulatory capital</sub>
+</p>
+<p align="center">
+  <a href="https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison">
+    <img src="images/05_model_comparison.png" alt="Side-by-side comparison of the three Credit VaR models" width="100%" />
+  </a>
+  <br><sub><b>Model Comparison</b> — where the three methodologies diverge, and why</sub>
+</p>
+<p align="center">
+  <a href="https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default">
+    <img src="images/06_probability_of_default.png" alt="Probability of Default estimation suite with four methods" width="100%" />
+  </a>
+  <br><sub><b>PD Suite</b> — four independent default-probability methods</sub>
+</p>
 
-| | |
-| :---: | :---: |
-| **[Introduction](https://credit-risk-models-by-apiwit1604.streamlit.app/)**<br>[![Intro page showing project architecture and framework connections](images/01_introduction.png)] | **[Merton–KMV Credit VaR]**<br>[![Merton-KMV structural Monte Carlo Credit VaR page](images/02_merton_kmv.png)] |
-| **[CreditMetrics Credit VaR]**<br>[![CreditMetrics rating-migration Monte Carlo page](images/03_creditmetrics.png)] | **[Basel ASRF Credit VaR]**<br>[![Basel single-factor closed-form Credit VaR page](images/04_basel_asrf.png)]|
-| **[Model Comparison]**<br>[![Side-by-side comparison of the three Credit VaR models](images/05_model_comparison.png)] | **[PD Suite]**<br>[![Probability of Default estimation suite with four methods](images/06_probability_of_default.png)] |
 
 ## Quick start
 
