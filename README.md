@@ -13,36 +13,17 @@ page so nothing is hardcoded.
 
 ---
 
-## Dashboard Modules & Live Links
+## 🚀 Quick Access & Live Dashboards
 
-- **[Introduction Page](https://credit-risk-models-by-apiwit1604.streamlit.app/)**
-  System overview detailing dashboard navigation, framework connections, and project architecture.
-  [![Image 1: Introduction Page](images/01_introduction.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/)
-
-- **[Merton–KMV Structural Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR)**
-  Simulates asset value paths via a 1-factor Gaussian copula to evaluate portfolio default distributions.
-  [![Image 2: Merton–KMV Credit VaR](images/02_merton_kmv.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR)
-
-- **[CreditMetrics Rating-Migration Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR)**
-  Simulates credit rating migrations and revalues exposures along yield and credit spread curves.
-  [![Image 3: CreditMetrics Credit VaR](images/03_creditmetrics.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR)
-
-- **[Basel Single-Factor (ASRF) Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR)**
-  Calculates regulatory capital under the closed-form Basel II/III ASRF formula.
-  [![Image 4: Basel Single-Factor Credit VaR](images/04_basel_asrf.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR)
-
-- **[Credit VaR Model Comparison](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)**
-  Side-by-side comparison highlighting risk metric divergence across concentrated portfolios.
-  [![Image 5: Model Comparison](images/05_model_comparison.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)
-
-- **[Probability of Default (PD) Suite](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)**
-  Standalone PD estimation suite for individual obligors/bonds across 4 institutional methods.
-  [![Image 6: Probability of Default Suite](images/06_probability_of_default.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)
-
-- **[Settings — Global Model Inputs](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings)**
-  Centralized management for rating scales, transition matrices, and market yield curves.
-  [![Image 7: Settings Dashboard](images/07_settings.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings)
-
+| Module | Core Functionality | Live Link |
+| :--- | :--- | :---: |
+| **01. Introduction Page** | System overview, framework connections & project architecture | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/) |
+| **02. Merton–KMV Credit VaR** | Asset value paths via 1-factor Gaussian copula | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR) |
+| **03. CreditMetrics Credit VaR** | Credit rating migrations & yield/spread revaluation | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR) |
+| **04. Basel ASRF Credit VaR** | Regulatory capital via closed-form Basel II/III ASRF | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR) |
+| **05. Model Comparison** | Risk metric divergence across concentrated portfolios | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison) |
+| **06. PD Suite** | Standalone PD estimation across 4 institutional methods | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default) |
+| **07. Settings** | Centralized rating scales, transition matrices & yield curves | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings) |
 
 ---
 
