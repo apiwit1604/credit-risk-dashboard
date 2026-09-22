@@ -2,9 +2,8 @@ name: Auto Wake Credit Risk Dashboard
 
 on:
   schedule:
-    # รันอัตโนมัติทุกๆ 3 วัน เวลา 00:00 UTC
     - cron: '0 0 */3 * *'
-  workflow_dispatch: # ปุ่มกดรัน Manual เพื่อทดสอบระบบ
+  workflow_dispatch:
 
 jobs:
   wake-app:
@@ -41,7 +40,6 @@ jobs:
               page.goto(url, wait_until='networkidle', timeout=60000)
               time.sleep(10)
               
-              # ตรวจหาและกดปุ่ม Wake Up หาก App นอนหลับอยู่
               wake_button = page.query_selector('button:has-text(\"Yes, get this app back up!\")')
               if wake_button:
                   print('Status: App is sleeping. Clicking wake up button...')
