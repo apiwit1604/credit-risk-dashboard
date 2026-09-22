@@ -1,4 +1,4 @@
-# 🔍 Credit Risk Dashboard
+# Credit Risk Dashboard
 
 **One portfolio. Three credit-risk methodologies. Wildly different capital numbers — see exactly why.**
 
@@ -256,9 +256,8 @@ Documented, deliberately **not** changed:
 ## About
 
 **Apiwit Oonworg**
-BBA, Finance (Minor: Management Information Systems) — Thammasat University
 
-📫 LinkedIn: _add your link_ · GitHub: _add your link_ · Email: _add your address_
+📫 GitHub: https://github.com/apiwit1604 · Email: apiwit.oon@outlook.com
 
 ## License
 
