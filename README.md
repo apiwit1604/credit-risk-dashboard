@@ -62,8 +62,7 @@ of hardcoded.
 ### Screens
  
 <p align="center">
-  <a href="https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR">
-    <img src="images/02_merton_kmv.png" alt="Merton-KMV structural Monte Carlo Credit VaR page" width="100%" />
+  <img src=https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/01_introduction.png alt="Merton-KMV structural Monte Carlo Credit VaR page" width="100%" />
   </a>
   <br><sub><b>Merton–KMV</b> — structural Monte Carlo Credit VaR</sub>
 </p>
