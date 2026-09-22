@@ -7,8 +7,6 @@
 ![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-FF4B4B?logo=streamlit&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> ⚠️ Verify the Python version badge against your `requirements.txt` before you rely on it — swap `3.10+` for whatever you've actually pinned.
-
 An interactive Streamlit dashboard comparing three portfolio **Credit
 Value-at-Risk (Credit VaR)** frameworks and four **Probability of Default
 (PD)** estimation methods, built from a research notebook that has been
@@ -63,11 +61,11 @@ of hardcoded.
 
 | Screen | Description |
 | :--- | :--- |
-| **Merton–KMV Structural Model**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/02_merton_kmv.png" width="100%"/> | Calculates Credit VaR using structural Monte Carlo simulation based on firm asset values and capital structure. |
-| **CreditMetrics Framework**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/03_creditmetrics.png" width="100%"/> | Evaluates rating migration risks via Monte Carlo revaluation along the forward yield curve. |
-| **Basel ASRF Approach**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/04_basel_asrf.png" width="100%"/> | Computes closed-form regulatory capital requirements under the Single-Factor Asymptotic Risk Factor model. |
-| **Model Comparison Suite**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/05_model_comparison.png" width="100%"/> | Side-by-side analytical comparison highlighting structural divergence points across all three models. |
-| **Probability of Default (PD) Suite**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/06_probability_of_default.png" width="100%"/> | Comprehensive estimation toolkit featuring four independent methodologies for default probability. |
+| **[Merton–KMV Structural Model](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR)**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/02_merton_kmv.png" width="100%"/> | Calculates Credit VaR using structural Monte Carlo simulation based on firm asset values and capital structure. |
+| **[CreditMetrics Framework](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR)**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/03_creditmetrics.png" width="100%"/> | Evaluates rating migration risks via Monte Carlo revaluation along the forward yield curve. |
+| **[Basel ASRF Approach](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR)**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/04_basel_asrf.png" width="100%"/> | Computes closed-form regulatory capital requirements under the Single-Factor Asymptotic Risk Factor model. |
+| **[Model Comparison Suite](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/05_model_comparison.png" width="100%"/> | Side-by-side analytical comparison highlighting structural divergence points across all three models. |
+| **[Probability of Default (PD) Suite](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)**<br><br><img src="https://raw.githubusercontent.com/apiwit1604/credit-risk-dashboard/main/images/06_probability_of_default.png" width="100%"/> | Comprehensive estimation toolkit featuring four independent methodologies for default probability. |
 
 ## Quick start
 
