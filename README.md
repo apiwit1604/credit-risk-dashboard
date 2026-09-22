@@ -1,50 +1,71 @@
-# Credit Risk Dashboard
+# 🔍 Credit Risk Dashboard
+
+**One portfolio. Three credit-risk methodologies. Wildly different capital numbers — see exactly why.**
+
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://credit-risk-models-by-apiwit1604.streamlit.app/)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+> ⚠️ Verify the Python version badge against your `requirements.txt` before you rely on it — swap `3.10+` for whatever you've actually pinned.
 
 An interactive Streamlit dashboard comparing three portfolio **Credit
 Value-at-Risk (Credit VaR)** frameworks and four **Probability of Default
 (PD)** estimation methods, built from a research notebook that has been
 restructured into a proper, importable Python package.
 
-**Live structure:** edit a loan/bond portfolio once, and see how it prices
-under a structural Monte Carlo model, a rating-migration Monte Carlo model,
-and the Basel regulatory formula — side by side, with the "hard to
-calibrate" market inputs (transition matrix, curves) exposed on a settings
-page so nothing is hardcoded.
+Edit a loan/bond portfolio once, and watch it get priced under a **structural
+Monte Carlo model**, a **rating-migration Monte Carlo model**, and the
+**Basel regulatory formula** — side by side, with every "hard to calibrate"
+market input (transition matrix, curves) exposed on a settings page instead
+of hardcoded.
+
+### What this project demonstrates
+- Quantitative credit risk modeling: Merton–KMV, CreditMetrics, Basel ASRF
+- One-factor Gaussian copula Monte Carlo simulation
+- Regulatory capital modeling (Basel II/III IRB formulas)
+- PD estimation via both structural (option-theoretic) and reduced-form / hazard-rate methods
+- Software engineering discipline: a framework-agnostic modeling core (`src/`) with zero Streamlit dependency, cleanly separated from the UI layer — not just a notebook pasted into an app
+
+**🚀 [Launch the live dashboard →](https://credit-risk-models-by-apiwit1604.streamlit.app/)**
+
+[![Introduction page of the Credit Risk Dashboard](images/01_introduction.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/)
 
 ---
-
-## 🚀 Quick Access & Live Dashboards
-
-| Module | Core Functionality | Live Link |
-| :--- | :--- | :---: |
-| **01. Introduction Page** | System overview, framework connections & project architecture | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/) |
-| **02. Merton–KMV Credit VaR** | Asset value paths via 1-factor Gaussian copula | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR) |
-| **03. CreditMetrics Credit VaR** | Credit rating migrations & yield/spread revaluation | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR) |
-| **04. Basel ASRF Credit VaR** | Regulatory capital via closed-form Basel II/III ASRF | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR) |
-| **05. Model Comparison** | Risk metric divergence across concentrated portfolios | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison) |
-| **06. PD Suite** | Standalone PD estimation across 4 institutional methods | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default) |
-| **07. Settings** | Centralized rating scales, transition matrices & yield curves | [![Live Demo](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings) |
-
----
-
-## 🖥️ Dashboard Overview & Live Demos
-
-| Module & Preview | Module & Preview |
-| :---: | :---: |
-| **[01. Introduction Page](https://credit-risk-models-by-apiwit1604.streamlit.app/)**<br>[![Intro](images/01_introduction.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/) | **[02. Merton–KMV Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR)**<br>[![Merton](images/02_merton_kmv.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR) |
-| **[03. CreditMetrics Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR)**<br>[![CreditMetrics](images/03_creditmetrics.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR) | **[04. Basel ASRF Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR)**<br>[![Basel](images/04_basel_asrf.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR) |
-| **[05. Model Comparison](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)**<br>[![Comparison](images/05_model_comparison.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison) | **[06. PD Suite](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)**<br>[![PD](images/06_probability_of_default.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default) |
 
 ## Table of contents
 
+- [Explore the dashboard](#-explore-the-dashboard)
+- [Screens](#screens)
 - [Quick start](#quick-start)
 - [Project structure](#project-structure)
-- [The three Credit VaR models](#the-three-credit-var-models)
-- [The four PD estimation methods](#the-four-pd-estimation-methods)
-- [What was fixed vs. the original notebook](#what-was-fixed-vs-the-original-notebook)
-- [Known limitations](#known-limitations)
+- [Methodology](#methodology)
+  - [Credit VaR: three ways to measure portfolio risk](#credit-var-three-ways-to-measure-portfolio-risk)
+  - [Probability of Default: four independent methods](#probability-of-default-four-independent-methods)
+- [Known limitations & design decisions](#known-limitations--design-decisions)
+- [Tech stack](#tech-stack)
+- [About](#about)
 - [License](#license)
+
+## 📊 Explore the dashboard
+
+| # | Page | What you'll see | Launch |
+| :-: | :--- | :--- | :---: |
+| 01 | **Introduction** | System overview, framework connections & project architecture | [![Launch](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/) |
+| 02 | **Merton–KMV Credit VaR** | Asset value paths via 1-factor Gaussian copula | [![Launch](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR) |
+| 03 | **CreditMetrics Credit VaR** | Credit rating migrations & yield/spread revaluation | [![Launch](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR) |
+| 04 | **Basel ASRF Credit VaR** | Regulatory capital via closed-form Basel II/III ASRF | [![Launch](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR) |
+| 05 | **Model Comparison** | Risk metric divergence across concentrated portfolios | [![Launch](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison) |
+| 06 | **PD Suite** | Standalone PD estimation across 4 institutional methods | [![Launch](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default) |
+| 07 | **Settings** | Centralized rating scales, transition matrices & yield curves | [![Launch](https://img.shields.io/badge/Launch-App-1f77b4?style=for-the-badge&logo=streamlit)](https://credit-risk-models-by-apiwit1604.streamlit.app/Settings) |
+
+### Screens
+
+| | |
+| :---: | :---: |
+| **[Introduction](https://credit-risk-models-by-apiwit1604.streamlit.app/)**<br>[![Intro page showing project architecture and framework connections](images/01_introduction.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/) | **[Merton–KMV Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR)**<br>[![Merton-KMV structural Monte Carlo Credit VaR page](images/02_merton_kmv.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Merton_KMV_CVaR) |
+| **[CreditMetrics Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR)**<br>[![CreditMetrics rating-migration Monte Carlo page](images/03_creditmetrics.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/CreditMetrics_CVaR) | **[Basel ASRF Credit VaR](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR)**<br>[![Basel single-factor closed-form Credit VaR page](images/04_basel_asrf.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Basel_Single_Factor_CVaR) |
+| **[Model Comparison](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)**<br>[![Side-by-side comparison of the three Credit VaR models](images/05_model_comparison.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison) | **[PD Suite](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default)**<br>[![Probability of Default estimation suite with four methods](images/06_probability_of_default.png)](https://credit-risk-models-by-apiwit1604.streamlit.app/Probability_of_Default) |
 
 ## Quick start
 
@@ -88,7 +109,7 @@ credit-risk-dashboard/
 │   ├── compute.py                       # st.cache_data wrappers around the pure model functions
 │   ├── ui_components.py                 # Per-model portfolio editors (column-restricted) + full editor
 │   └── ui.py                            # UI Architecture & Component Reusability
-├── images/                              # UI screenshots for documentation                 
+├── images/                              # UI screenshots for documentation
 ├── requirements.txt
 ├── LICENSE
 └── .gitignore
@@ -98,17 +119,26 @@ Everything under `src/` other than `state.py`, `compute.py` and
 `ui_components.py` is plain NumPy/pandas/SciPy — it can be imported and
 used (or unit-tested) with no Streamlit dependency at all.
 
-## The three Credit VaR models
+## Methodology
+
+### Credit VaR: three ways to measure portfolio risk
 
 All three price the **same** demo portfolio (or your edited one): three
 exposures with a rating, maturity, coupon schedule, EAD and LGD.
 
-### 1. Merton–KMV (structural, asset-value Monte Carlo)
+#### 1. Merton–KMV (structural, asset-value Monte Carlo)
 
-Each firm's log-asset-return is driven by a common systematic factor $M$
-plus an idiosyncratic shock $\varepsilon_i$ — a one-factor Gaussian copula
-where `asset_correlation` $\rho_i$ is firm $i$'s loading on the common
-factor:
+Each firm's asset return is driven by a common systematic factor plus its
+own idiosyncratic shock. A firm defaults in a given simulation draw if its
+simulated asset value falls below its exposure (a simplified default
+barrier), and portfolio-level VaR is read off the resulting loss
+distribution.
+
+<details>
+<summary>Show the math</summary>
+
+A one-factor Gaussian copula where `asset_correlation` $\rho_i$ is firm
+$i$'s loading on the common factor $M$:
 
 $$
 Z_i = \sqrt{\rho_i}\,M + \sqrt{1-\rho_i}\,\varepsilon_i, \qquad M,\varepsilon_i \overset{\text{iid}}{\sim} \mathcal{N}(0,1)
@@ -118,18 +148,24 @@ $$
 V_{i,T} = V_{i,0}\exp\!\big(T(\mu_i + \sigma_i Z_i)\big)
 $$
 
-A firm **defaults** in a given draw if $V_{i,T} < \text{EAD}_i$ (a
-simplified default barrier in place of a full debt schedule), with
+A firm **defaults** in a given draw if $V_{i,T} < \text{EAD}_i$, with
 $\text{Loss}_i = \text{EAD}_i \times \text{LGD}_i$. Portfolio loss sums
 across firms over `n_sims` draws; **VaR** is the empirical quantile at the
 chosen confidence level, **Expected Shortfall** is the mean loss beyond
 VaR, and **Economic Capital** is VaR net of the expected loss already
 priced in.
 
-### 2. CreditMetrics (rating-migration Monte Carlo)
+</details>
+
+#### 2. CreditMetrics (rating-migration Monte Carlo)
 
 Rather than a binary default/no-default outcome, every firm is revalued
-under **every possible ending rating**:
+under **every possible ending rating**, and loss is the mark-to-market
+swing between the firm's current rating and its simulated one. This is
+the only one of the three models sensitive to the credit-spread curve.
+
+<details>
+<summary>Show the math</summary>
 
 1. The 1-year transition matrix $P$ is raised to a fractional power to
    match the loss horizon $h$: $P_h = P^{h}$ (via
@@ -146,12 +182,19 @@ V(\text{rating}) = \sum_t \frac{CF_t}{\big(1+f_t(\text{rating})\big)^{t-h}}
 $$
 
 Loss in a draw = value under the firm's **current** rating − value under
-its **simulated** rating. This is the only one of the three models
-sensitive to the credit-spread curve.
+its **simulated** rating.
 
-### 3. Basel Single-Factor (ASRF, closed-form)
+</details>
 
-The Basel II/III corporate IRB formula — no simulation.
+#### 3. Basel Single-Factor (ASRF, closed-form)
+
+The Basel II/III corporate IRB formula — a direct calculation, no
+simulation required. $M$ is the effective maturity (capped/floored at
+1–5 years), defaulting to each firm's own `years_to_maturity` rather than
+a single flat assumption, as the original notebook did.
+
+<details>
+<summary>Show the math</summary>
 
 $$
 R(PD) = 0.12\cdot\frac{1-e^{-50PD}}{1-e^{-50}} + 0.24\cdot\left(1-\frac{1-e^{-50PD}}{1-e^{-50}}\right)
@@ -171,15 +214,11 @@ K = \big(LGD\cdot WCDR(PD)-PD\cdot LGD\big)\cdot MA(PD,M), \quad
 EC = K\times EAD, \quad EL = PD\times LGD\times EAD
 $$
 
-$M$ is the effective maturity — capped/floored at 1–5 years — and (unlike
-the original notebook — see below) defaults to each firm's own
-`years_to_maturity` rather than a single flat assumption.
+</details>
 
-Page 5 lines these three up side by side and shows why a small,
-concentrated demo portfolio is exactly the setting where structural,
-migration-based and regulatory-formula answers diverge most.
+**[Page 5 — Model Comparison](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)** lines these three up side by side and shows why a small, concentrated demo portfolio is exactly the setting where structural, migration-based and regulatory-formula answers diverge most.
 
-## The four PD estimation methods
+### Probability of Default: four independent methods
 
 Page 6 covers four independent ways to get a PD for a single firm/bond —
 these are not part of the portfolio Credit VaR pipeline above.
@@ -200,7 +239,7 @@ these are not part of the portfolio Credit VaR pipeline above.
    cumulative survival probability directly from the spread, then
    difference across periods for unconditional/conditional PDs.
 
-## Known limitations
+## Known limitations & design decisions
 
 Documented, deliberately **not** changed:
 
@@ -209,6 +248,17 @@ Documented, deliberately **not** changed:
   solve the two Merton equations, rather than the more standard exact
   2-equation solve (e.g. `scipy.optimize.fsolve`). The heuristic works, but
   depends on the `weight_sigma` penalty and the optimizer's convergence.
+
+## Tech stack
+
+`Python` · `Streamlit` · `NumPy` · `pandas` · `SciPy`
+
+## About
+
+**Apiwit Oonworg**
+BBA, Finance (Minor: Management Information Systems) — Thammasat University
+
+📫 LinkedIn: _add your link_ · GitHub: _add your link_ · Email: _add your address_
 
 ## License
 
