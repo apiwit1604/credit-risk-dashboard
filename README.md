@@ -134,11 +134,9 @@ simulated asset value falls below its exposure (a simplified default
 barrier), and portfolio-level VaR is read off the resulting loss
 distribution.
 
-<details>
-<summary>Show the math</summary>
+##### 📐 Mathematical Framework
 
-A one-factor Gaussian copula where `asset_correlation` $\rho_i$ is firm
-$i$'s loading on the common factor $M$:
+A one-factor Gaussian copula where asset correlation $\rho_i$ is firm $i$'s loading on the common factor $M$:
 
 $$
 Z_i = \sqrt{\rho_i}\,M + \sqrt{1-\rho_i}\,\varepsilon_i, \qquad M,\varepsilon_i \overset{\text{iid}}{\sim} \mathcal{N}(0,1)
@@ -155,7 +153,6 @@ chosen confidence level, **Expected Shortfall** is the mean loss beyond
 VaR, and **Economic Capital** is VaR net of the expected loss already
 priced in.
 
-</details>
 
 #### 2. CreditMetrics (rating-migration Monte Carlo)
 
@@ -164,8 +161,7 @@ under **every possible ending rating**, and loss is the mark-to-market
 swing between the firm's current rating and its simulated one. This is
 the only one of the three models sensitive to the credit-spread curve.
 
-<details>
-<summary>Show the math</summary>
+##### 📐 Mathematical Framework
 
 1. The 1-year transition matrix $P$ is raised to a fractional power to
    match the loss horizon $h$: $P_h = P^{h}$ (via
@@ -184,8 +180,6 @@ $$
 Loss in a draw = value under the firm's **current** rating − value under
 its **simulated** rating.
 
-</details>
-
 #### 3. Basel Single-Factor (ASRF, closed-form)
 
 The Basel II/III corporate IRB formula — a direct calculation, no
@@ -193,8 +187,7 @@ simulation required. $M$ is the effective maturity (capped/floored at
 1–5 years), defaulting to each firm's own `years_to_maturity` rather than
 a single flat assumption, as the original notebook did.
 
-<details>
-<summary>Show the math</summary>
+##### 📐 Mathematical Framework
 
 $$
 R(PD) = 0.12\cdot\frac{1-e^{-50PD}}{1-e^{-50}} + 0.24\cdot\left(1-\frac{1-e^{-50PD}}{1-e^{-50}}\right)
@@ -214,7 +207,6 @@ K = \big(LGD\cdot WCDR(PD)-PD\cdot LGD\big)\cdot MA(PD,M), \quad
 EC = K\times EAD, \quad EL = PD\times LGD\times EAD
 $$
 
-</details>
 
 **[Page 5 — Model Comparison](https://credit-risk-models-by-apiwit1604.streamlit.app/Model_Comparison)** lines these three up side by side and shows why a small, concentrated demo portfolio is exactly the setting where structural, migration-based and regulatory-formula answers diverge most.
 
